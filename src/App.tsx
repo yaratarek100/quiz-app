@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Bounce, ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import i18n from "./i18n";
+import cookies from "js-cookie";
+import Authlayout from "./modules/Auth/Authlayout/Authlayout";
+import Notfound from "./modules/shared/Notfound/Notfound";
+import Login from "./modules/Auth/Login/Login";
+import Register from "./modules/Auth/Register/Register";
+import ForgetPassword from "./modules/Auth/Forget-Password/Forget-Password";
+import ResetPassword from "./modules/Auth/Reset-Password/Reset-Password";
+import Masterlayout from "./modules/dash-board/Masterlayout/Masterlayout";
+import Home from "./modules/dash-board/Home/Home";
+import Students from "./modules/Students/Students";
+import Groups from "./modules/Group/Groups/Groups";
+import Quizzes from "./modules/quiz/Quizzes/Quizzes";
+import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // local
 
+  const lng = cookies.get("i18next") || "en";
+
+  // useEffect(() => {
+  //   document.dir = i18n.dir(i18n.language);
+  // }, [i18n.language]);
+
+  // routes
+  const routes = createBrowserRouter([
+    // auth layout
+    {
+      path: "",
+      element: <Authlayout />,
+      errorElement: <Notfound />,
+      children: [
+        { path: "login", element: <Login /> },
+        { path: "register", element: <Register /> },
+        { path: "forget-password", element: <ForgetPassword /> },
+        { path: "reset-password", element: <ResetPassword /> },
+      ],
+    },
+    {
+      path: "home",
+      element: <Masterlayout />,
+      errorElement: <Notfound />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: "students", element: <Students /> },
+        { path: "groups", element: <Groups /> },
+        { path: "quizzes", element: <Quizzes /> },
+        { path: "quiz-page", element: <QuizPage /> },
+      ],
+    },
+
+    
+  ]);
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <RouterProvider router={routes}></RouterProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={lng === "ar"}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
-  )
+  );
 }
-
-export default App
+export default App;
