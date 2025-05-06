@@ -16,6 +16,7 @@ import Students from "./modules/Students/Students";
 import Groups from "./modules/Group/Groups/Groups";
 import Quizzes from "./modules/quiz/Quizzes/Quizzes";
 import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
+import ChangePasswordModal from "./modules/Auth/Change-Password-modal/Change-Password-modal";
 
 function App() {
   // local
@@ -38,6 +39,8 @@ function App() {
         { path: "register", element: <Register /> },
         { path: "forget-password", element: <ForgetPassword /> },
         { path: "reset-password", element: <ResetPassword /> },
+        { path: "change-password", element: <ChangePasswordModal /> },
+
       ],
     },
     {
