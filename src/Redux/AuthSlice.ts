@@ -5,9 +5,9 @@ import type { ILogin_ProfileData } from "@/Interfaces/AuthInterface";
 interface IAuthState {
     loginData: ILogin_ProfileData | null;
   }
-
+  const storedUser = localStorage.getItem("user");
   const initialState: IAuthState = {
-    loginData: null,
+    loginData: storedUser?JSON.parse(storedUser):null,
   };
 
 

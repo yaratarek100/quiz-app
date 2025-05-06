@@ -40,6 +40,7 @@ export default function Login() {
       toast.success(data?.message)
       localStorage.setItem('token',data?.data?.accessToken)
       dispatch(fillLoginData(data?.data?.profile))
+      localStorage.setItem("user", JSON.stringify(data?.data?.profile));
       navigate('/dashboard')
     } catch (error) {
       console.log(error)
