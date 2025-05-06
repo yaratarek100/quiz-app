@@ -16,6 +16,8 @@ import Students from "./modules/Students/Students";
 import Groups from "./modules/Group/Groups/Groups";
 import Quizzes from "./modules/quiz/Quizzes/Quizzes";
 import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
+import { Provider } from "react-redux";
+import store from "./Redux/Store";
 
 function App() {
   // local
@@ -35,6 +37,7 @@ function App() {
       errorElement: <Notfound />,
       children: [
         { path: "login", element: <Login /> },
+        { path: "", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "forget-password", element: <ForgetPassword /> },
         { path: "reset-password", element: <ResetPassword /> },
@@ -57,6 +60,8 @@ function App() {
   ]);
   return (
     <>
+    <Provider store={store}>
+
       <RouterProvider router={routes}></RouterProvider>
       <ToastContainer
         position="top-right"
@@ -70,7 +75,8 @@ function App() {
         pauseOnHover
         theme="colored"
         transition={Bounce}
-      />
+        />
+        </Provider>
     </>
   );
 }
