@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@layer base {
+    input:-webkit-autofill {
+      box-shadow: 0 0 0px 1000px #0D1321 inset !important; /* Match your bg */
+      -webkit-text-fill-color: white !important;
+    }
+  }
