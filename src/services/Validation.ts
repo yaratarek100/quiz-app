@@ -14,13 +14,20 @@ export const Password_Validation={
       message:'Please Enter a valid Email'
      }
    }
-// // SIGNUP_VALIDATIN
-// export const USER_NAME_VALIDATION=(t: Function)=>({
-//   required:t("Validation.Username-required"),
-//   pattern: {
-//     value: /^(?=.*[A-Za-z])[A-Za-z0-9]*[0-9]$/,
-//     message:t("Validation.Username-message")
-//   }
+
+export const USER_NAME_VALIDATION={
+  required:"First Name is Required",
+  pattern: {
+    value: /^[A-Za-z0-9]+$/ ,
+    message:"Please Enter valid Name"
+  }}
+export const LAST_NAME_VALIDATION={
+  required:"Last Name is Required",
+  pattern: {
+    value: /^[A-Za-z0-9]+$/ ,
+    message:"Please Enter valid Name"
+  }}
+
   
 // })
 // export const COUNTRY_VALIDATION=(t: Function)=>({
