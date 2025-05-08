@@ -10,7 +10,6 @@ interface IAuthState {
     loginData: storedUser?JSON.parse(storedUser):null,
   };
 
-
 const authSlice=createSlice({
 name:'AuthSlice',
 initialState:initialState,
