@@ -1,6 +1,5 @@
 import "./App.css";
 import { Bounce, ToastContainer } from "react-toastify";
-import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import i18n from "./i18n";
 import cookies from "js-cookie";

@@ -1,5 +1,10 @@
 
 
+
+  export const OTP_Validation={
+    required:'OTP is Required',
+   }
+
 export const USER_NAME_VALIDATION={
   required:"First Name is Required",
   pattern: {
@@ -13,7 +18,7 @@ export const LAST_NAME_VALIDATION={
     message:"Please Enter valid Name"
   }}
 
-  
+
 
 
 export const Password_Validation = {
