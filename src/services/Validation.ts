@@ -14,6 +14,10 @@ export const Password_Validation={
       message:'Please Enter a valid Email'
      }
    }
+
+  export const OTP_Validation={
+    required:'OTP is Required',
+   }
 // // SIGNUP_VALIDATIN
 // export const USER_NAME_VALIDATION=(t: Function)=>({
 //   required:t("Validation.Username-required"),
