@@ -18,6 +18,8 @@ import Quizzes from "./modules/quiz/Quizzes/Quizzes";
 import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
 import { Provider } from "react-redux";
 import store from "./Redux/Store";
+import ChangePassword from "./modules/Auth/Change-Password-modal/Change-Password-modal";
+
 
 function App() {
   // local
@@ -41,6 +43,8 @@ function App() {
         { path: "register", element: <Register /> },
         { path: "forget-password", element: <ForgetPassword /> },
         { path: "reset-password", element: <ResetPassword /> },
+        { path: "change-password", element: <ChangePassword /> },
+
       ],
     },
     {
