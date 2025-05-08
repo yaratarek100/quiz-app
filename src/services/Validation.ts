@@ -1,8 +1,24 @@
 
 
+
   export const OTP_Validation={
     required:'OTP is Required',
    }
+
+export const USER_NAME_VALIDATION={
+  required:"First Name is Required",
+  pattern: {
+    value: /^[A-Za-z0-9]+$/ ,
+    message:"Please Enter valid Name"
+  }}
+export const LAST_NAME_VALIDATION={
+  required:"Last Name is Required",
+  pattern: {
+    value: /^[A-Za-z0-9]+$/ ,
+    message:"Please Enter valid Name"
+  }}
+
+
 
 
 export const Password_Validation = {
@@ -23,7 +39,7 @@ export const Email_Validation = {
   },
 };
 
-//change Password
+
 export const Confirm_Password_Validation = (password: string) => ({
   required: "Confirmation password is required",
   validate: (value: string) => value === password || "Passwords do not match",
