@@ -23,6 +23,11 @@ const items = [
     icon: Home,
   },
   {
+    title: "Students",
+    url: "/dashboard/students",
+    icon: Home,
+  },
+  {
     title: "Groups",
     url: "/dashboard/groups",
     icon: MdGroups2,
