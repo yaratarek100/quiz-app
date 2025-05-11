@@ -10,7 +10,7 @@ import { useState } from "react"
 import type { Student } from "@/Interfaces/StudentsInteface"
 
 export default function Students() {
-const { data, error, isLoading } = useGetStudentsQuery()
+const { data, isLoading } = useGetStudentsQuery()
 const imgs=[img1,img2,img3]
 const [selectedStudent,setSelectedStudent]=useState<Student|null>(null)
  const [open, setOpen] = useState(false)

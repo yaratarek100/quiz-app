@@ -1,7 +1,4 @@
-
-
-
-  export const OTP_Validation={
+export const OTP_Validation={
     required:'OTP is Required',
    }
 
