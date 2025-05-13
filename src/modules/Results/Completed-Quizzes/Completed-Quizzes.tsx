@@ -8,6 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { privateUserAxiosInstance } from "@/services/Axiosinstance";
+import { QUIZ_URLS } from "@/services/Urls";
 import { useEffect } from "react";
 
 const invoices = [
@@ -58,8 +60,17 @@ const invoices = [
 export default function CompletedQuizzes() {
 
 
-const getCompletedQuizzes = ()=>{
-  await 
+const getCompletedQuizzes = async ()=>{
+  try{
+const {data}=await privateUserAxiosInstance.get(QUIZ_URLS.getAllQuizzesResults)
+ console.log(data);
+  }
+  catch(error){
+console.log(error);
+  }
+ 
+
+
 }
 
 useEffect(()=>{getCompletedQuizzes()},[])
