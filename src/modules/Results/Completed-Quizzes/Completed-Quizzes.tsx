@@ -1,107 +1,140 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { privateUserAxiosInstance } from "@/services/Axiosinstance";
-import { QUIZ_URLS } from "@/services/Urls";
-import { useEffect } from "react";
-
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-];
+import { GROUPS_URLS, QUIZ_URLS } from "@/services/Urls";
+import type { AxiosError } from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import type { QuizI } from "@/Interfaces/QuizInterface";
 
 export default function CompletedQuizzes() {
+  const [completedQuizzes, setCompletedQuizzes] = useState<QuizI[] | null>(
+    null
+  );
+  const [groups, setGroups] = useState<{
+    [key: string]: { name: string; noOfStudents: number };
+  }>({});
 
+  const getCompletedQuizzes = async () => {
+    try {
+      const { data } = await privateUserAxiosInstance.get(
+        QUIZ_URLS.getAllQuizzesResults
+      );
+      setCompletedQuizzes(data);
+    } catch (error) {
+      const axiosError = error as AxiosError;
 
-const getCompletedQuizzes = async ()=>{
-  try{
-const {data}=await privateUserAxiosInstance.get(QUIZ_URLS.getAllQuizzesResults)
- console.log(data);
+      if (axiosError.response) {
+        const message =
+          (axiosError.response.data as any)?.message ||
+          `Error ${axiosError.response.status}: ${axiosError.response.statusText}`;
+        toast.error(message);
+      } else if (axiosError.request) {
+        toast.error("No response from server. Please check your network.");
+      } else {
+        toast.error(axiosError.message || "Unexpected error occurred.");
+      }
+    }
+  };
+
+  const fetchGroupDetails = async (groupId: string) => {
+    try {
+      if (groups[groupId]) return;
+
+      const { data } = await privateUserAxiosInstance.get(
+        GROUPS_URLS.getGroup(groupId)
+      );
+      setGroups((prev) => ({
+        ...prev,
+        [groupId]: {
+          name: data.name,
+          noOfStudents: data.students?.length || 0,
+        },
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  function handelView(id: string) {
+    navigate(`/dashboard/view-results/${id}`);
   }
-  catch(error){
-console.log(error);
-  }
- 
-
-
-}
-
-useEffect(()=>{getCompletedQuizzes()},[])
+  const navigate = useNavigate();
+  useEffect(() => {
+    getCompletedQuizzes();
+  }, []);
+  useEffect(() => {
+    completedQuizzes?.forEach((quiz) => {
+      fetchGroupDetails(quiz?.quiz?.group);
+    });
+  }, [completedQuizzes]);
 
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+    <div className="p-4 py-1 pb-4 border rounded-md my-4">
+      <h1 className="text-lg font-medium my-3 ">Completed Quizzes</h1>
+      <Table className="border-separate border-spacing-y-2">
+        <TableHeader>
+          <TableRow>
+            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 rounded-s-sm text-white">
+              Title
+            </TableHead>
+            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+              Group name
+            </TableHead>
+            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+              No. of persons in group
+            </TableHead>
+            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+              Participants
+            </TableHead>
+            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+              Date
+            </TableHead>
+            <TableHead className="text-right bg-slate-800 border-slate-50  rounded-e-sm text-white w-20"></TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
+        </TableHeader>
+        <TableBody className="">
+          {completedQuizzes?.map((quiz: QuizI) => {
+            return (
+              <TableRow key={quiz?.quiz?._id} className=" ">
+                <TableCell className="border mb-1 rounded-s-sm">
+                  {quiz?.quiz?.title}
+                </TableCell>
+                <TableCell className="border mb-1 ">
+                  {groups[quiz?.quiz?.group]?.name || "Loading..."}
+                </TableCell>
+
+                <TableCell className="border mb-1 ">
+                  {groups[quiz?.quiz?.group]?.noOfStudents ?? "-"}
+                </TableCell>
+                <TableCell className="border mb-1 ">
+                  {quiz?.participants?.length}
+                </TableCell>
+                <TableCell className="border mb-1 ">
+                  {quiz?.quiz?.createdAt?.slice(0, 10)}
+                </TableCell>
+                <TableCell className="border mb-1 rounded-e-sm">
+                  <div
+                    className="rounded-3xl bg-lime-600 p-1 text-white text-center cursor-pointer"
+                    onClick={() => {
+                      handelView(quiz.quiz._id);
+                    }}
+                  >
+                    View
+                  </div>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
   );
 }

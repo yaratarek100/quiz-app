@@ -8,6 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { privateUserAxiosInstance } from "@/services/Axiosinstance";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const invoices = [
   {
@@ -54,7 +57,26 @@ const invoices = [
   },
 ]
 
+
+
 export default function Results() {
+
+  
+ const getQuizDetails = async (quizId: string) => {
+    try {
+console.log(quizId);
+      const { data } = await privateUserAxiosInstance.get(`/quiz/${quizId}`);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { id } = useParams();
+  useEffect(() => {
+     if (id) getQuizDetails(id);
+  }, [id]);
+
   return (
     <Table>
       <TableCaption>A list of your recent invoices.</TableCaption>
