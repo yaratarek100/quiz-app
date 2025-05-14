@@ -13,21 +13,26 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { QuizI } from "@/Interfaces/QuizInterface";
+import { useDispatch } from "react-redux";
+import { setCompletedQuizzes } from "../../../redux/ResultSlice";
 
 export default function CompletedQuizzes() {
-  const [completedQuizzes, setCompletedQuizzes] = useState<QuizI[] | null>(
+  const [completedQuizzes, setCompletedQuizzess] = useState<QuizI[] | null>(
     null
   );
   const [groups, setGroups] = useState<{
     [key: string]: { name: string; noOfStudents: number };
   }>({});
 
+  const dispatch = useDispatch();
+
   const getCompletedQuizzes = async () => {
     try {
       const { data } = await privateUserAxiosInstance.get(
         QUIZ_URLS.getAllQuizzesResults
       );
-      setCompletedQuizzes(data);
+      setCompletedQuizzess(data);
+       dispatch(setCompletedQuizzes(data));
     } catch (error) {
       const axiosError = error as AxiosError;
 
@@ -63,8 +68,8 @@ export default function CompletedQuizzes() {
     }
   };
 
-  function handelView(id: string) {
-    navigate(`/dashboard/view-results/${id}`);
+  function handelView(quizIndex: number) {
+    navigate(`/dashboard/view-results/${quizIndex}`);
   }
   const navigate = useNavigate();
   useEffect(() => {
@@ -101,7 +106,7 @@ export default function CompletedQuizzes() {
           </TableRow>
         </TableHeader>
         <TableBody className="">
-          {completedQuizzes?.map((quiz: QuizI) => {
+          {completedQuizzes?.map((quiz: QuizI,index:number) => {
             return (
               <TableRow key={quiz?.quiz?._id} className=" ">
                 <TableCell className="border mb-1 rounded-s-sm">
@@ -124,7 +129,7 @@ export default function CompletedQuizzes() {
                   <div
                     className="rounded-3xl bg-lime-600 p-1 text-white text-center cursor-pointer"
                     onClick={() => {
-                      handelView(quiz.quiz._id);
+                      handelView(index);
                     }}
                   >
                     View

@@ -1,109 +1,76 @@
 import {
   Table,
   TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { privateUserAxiosInstance } from "@/services/Axiosinstance";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-]
-
-
+  TableCell,
+} from "@/components/ui/table";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/redux/Store";
 
 export default function Results() {
+  const [thisQuiz, setThisQuiz] = useState<any>(null);
+  const quizzes = useSelector(
+    (state: RootState) => state.completedQuizzes.quizzes
+  );
+  const { index } = useParams();
 
-  
- const getQuizDetails = async (quizId: string) => {
-    try {
-console.log(quizId);
-      const { data } = await privateUserAxiosInstance.get(`/quiz/${quizId}`);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const { id } = useParams();
   useEffect(() => {
-     if (id) getQuizDetails(id);
-  }, [id]);
+    if (index && quizzes && quizzes.length > 0) {
+      const quizIndex = Number(index);
+      setThisQuiz(quizzes[quizIndex]);
+      console.log(quizzes[quizIndex]);
+    }
+  }, [index, quizzes]);
 
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
-  )
+    <>
+      <h1 className="text-2xl font-semibold my-3">
+        <Link to="/dashboard/results" className="hover:text-lime-500">Quizzes</Link>
+      <span className="mx-3 text-lime-400">{">>"}</span>
+      {thisQuiz?.quiz?.title}
+      </h1>
+      
+      <div className="p-4 py-1 pb-4 border rounded-md my-4">
+        <h1 className="text-lg font-medium my-3 ">Results</h1>
+        <Table className="border-separate border-spacing-y-2">
+          <TableHeader>
+            <TableRow>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white rounded-s-sm">
+                Student name
+              </TableHead>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+                score
+              </TableHead>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+                email
+              </TableHead>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white rounded-e-sm ">
+                Time submitted
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {thisQuiz?.participants?.map((item: any) => (
+              <TableRow key={item}>
+                <TableCell className="border mb-1 rounded-s-sm">
+                  {item.participant.first_name}
+                </TableCell>
+                <TableCell className="border mb-1 ">{item.score}</TableCell>
+                <TableCell className="border mb-1 ">
+                  {item.participant.email}
+                </TableCell>
+                <TableCell className="border mb-1 rounded-e-sm">
+                  {item.finished_at.slice(11, 16)}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </>
+  );
 }
