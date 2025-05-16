@@ -19,13 +19,15 @@ import { MdDelete } from "react-icons/md";
 import { GrAdd } from "react-icons/gr";
 
 import DeleteConfirmation from "@/modules/shared/Delet-Confirmation/Delet-Confirmation";
+import QuestionsData from "../QuestionsData/QuestionsData";
+
 
 export default function Questions() {
   const [questionData, setQuestionData] = useState<QuestionI | null>(null);
   const [questions, setQuestions] = useState<QuestionI[] | null>(null);
   const [openDeletion, setOpenDeletion] = useState(false);
-  const [selectedQuestion, setSelectedQuestion] = useState<string>();
-
+  const [openEdit, setOpenEdit] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
 
   const getQuestions = async () => {
     try {
@@ -75,12 +77,20 @@ export default function Questions() {
     setOpenDeletion(true);
   };
 
-
-  function handelEdit(id: string) {
-    
-  }
+  
 
 
+  const handleAddClick = () => {
+    setSelectedQuestion(null); // Reset to add mode
+    setOpenEdit(true);
+  };
+
+
+  const handleEditClick = (question: QuestionI) => {
+    setSelectedQuestion(question._id);
+    setOpenEdit(true);
+  };
+  
 
   useEffect(() => {
     getQuestions();
@@ -91,12 +101,22 @@ export default function Questions() {
       <div className="flex flex-1 justify-between  items-center px-4">
         <h1 className="text-lg font-medium my-3 ">Bank Of Questions</h1>
 
-        <div className="border border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 cursor-pointer">
-          <GrAdd className="text-2xl" />
-          <h3 className="text-lg font-semibold  ">New Question</h3>{" "}
-          {/* open question form modal */}
+        <div className="border border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 cursor-pointer"
+              onClick={handleAddClick}>
+            <GrAdd className="text-2xl" />
+            Add Question
         </div>
-      </div>
+          {openEdit && (
+    <QuestionsData
+    questionId={selectedQuestion}
+    onClose={() => setOpenEdit(false)}
+    onSuccess={() => {
+      setOpenEdit(false);
+      getQuestions();
+    }}
+  />
+                        )}
+        </div>
       <Table className="border-separate border-spacing-y-2">
         <TableHeader>
           <TableRow>
@@ -134,10 +154,8 @@ export default function Questions() {
                 <div className="flex text-orange-300 text-lg gap-1 ">
                   
                   <FaEye className="cursor-pointer" />
-                  <CiEdit  className="cursor-pointer"/>
-                  <MdDelete 
-                    onClick={() => handleDeleteClick(question._id)}
-                     className="cursor-pointer" />
+                  <CiEdit  className="cursor-pointer" onClick={() => handleEditClick(question)}/>
+                  <MdDelete className="cursor-pointer" onClick={() => handleDeleteClick(question._id)} />
                 </div>
               </TableCell>
             </TableRow>
@@ -146,11 +164,11 @@ export default function Questions() {
       </Table>
 
          <DeleteConfirmation
-        openDialog={openDeletion}
-        setOpenDialog={setOpenDeletion}
-        itemType="Group"
-        handleDelete={() => selectedQuestion && handleDelete(selectedQuestion)}
-      />
+            openDialog={openDeletion}
+            setOpenDialog={setOpenDeletion}
+            itemType="Group"
+            handleDelete={() => selectedQuestion && handleDelete(selectedQuestion)}
+          />
     </div>
   );
 }
