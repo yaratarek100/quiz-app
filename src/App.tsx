@@ -18,6 +18,7 @@ import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
 import { Provider } from "react-redux";
 import store from "./Redux/Store";
 import ChangePassword from "./modules/Auth/Change-Password-modal/Change-Password-modal";
+import QuizForm from "./modules/quiz/Quiz-Form/Quiz-Form";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         { path: "groups", element: <Groups /> },
         { path: "quizzes", element: <Quizzes /> },
         { path: "quiz-page", element: <QuizPage /> },
+
       ],
     },
 

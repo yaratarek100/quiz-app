@@ -11,9 +11,9 @@ type Props<T extends FieldValues> = {
   register: UseFormRegister<T>;
   rules?: RegisterOptions<T, Path<T>>;
   InputIcon?:ReactNode,
-  label: string;
+  label?: string;
   type?:string;
-  placeholder:string,
+  placeholder?:string,
   password?:boolean,
   togglePass?:()=>void,
   error?:string
