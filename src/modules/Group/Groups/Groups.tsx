@@ -8,15 +8,8 @@ import { toast } from "react-toastify";
 import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import DeleteConfirmation from "@/modules/shared/Delet-Confirmation/Delet-Confirmation";
+import type{ Group } from "@/Interfaces/QuizInterface";
 
-interface Group {
-  _id: string;
-  name: string;
-  status: "active" | "inactive";
-  instructor: string;
-  students: string[];
-  max_students: number;
-}
 
 export default function Groups() {
   const [groupsData, setGroupsData] = useState<Group[]>();
