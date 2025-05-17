@@ -22,36 +22,10 @@ import { GROUPS_URLS, QUIZ_URLS } from "@/services/Urls";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import CreatedSuccessfully from "@/modules/shared/Created-Successfully/CreatedSuccessfully";
-
-interface QuizFormProps {
-  openDialog: boolean;
-  setOpenDialog: (open: boolean) => void;
-  itemType?: string;
-  handleDelete?: () => void;
-}
-
-interface FormValues {
-  title: string;
-  duration: string;
-  questions_number: number;
-  score_per_question: string;
-  description: string;
-  difficulty: string;
-  type: string;
-  group: string;
-}
-
-interface Group {
-  _id: string;
-  name: string;
-  status: "active" | "inactive";
-  instructor: string;
-  students: string[];
-  max_students: number;
-}
+import type{ QuizFormProps,QuizFormValues,Group } from "@/Interfaces/QuizInterface";
 
 export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
-  const { register, handleSubmit, setValue, control, formState: { errors }, reset } = useForm<FormValues>({
+  const { register, handleSubmit, setValue, control, formState: { errors }, reset } = useForm<QuizFormValues>({
     defaultValues: {},
   });
 
@@ -78,7 +52,7 @@ export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
 
 
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: QuizFormValues) => {
     if (!time || !selectedDate) return;
 
     const [hours, minutes] = time.split(":").map(Number);

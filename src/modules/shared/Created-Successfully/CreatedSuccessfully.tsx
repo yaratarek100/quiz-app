@@ -8,12 +8,8 @@ import {
 } from "@/components/ui/dialog";
 import confirmPhoto from "../../../assets/images/confirmPhoto.svg";
 import { FaCopy } from "react-icons/fa";
-interface CreatedSuccessfullyProps {
-  openSuccessDialog: boolean;
-  setOpenSuccessDialog: (open: boolean) => void;
-  itemType: string;
-  code: string;
-}
+import type { CreatedSuccessfullyProps } from "@/Interfaces/QuizInterface";
+
 export default function CreatedSuccessfully({
   openSuccessDialog,
   setOpenSuccessDialog,
