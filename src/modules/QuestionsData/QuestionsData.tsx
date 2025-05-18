@@ -145,7 +145,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                   </div>
                   <div className="w-1/12 p-4 flex justify-center items-center">
                     <Button type="submit">
-                      <Save />
+                      <Save size={80}/>
                     </Button>
                   </div>
                   <div className="w-1/12 p-4 flex justify-center items-center">

@@ -101,11 +101,13 @@ export default function Questions() {
       <div className="flex flex-1 justify-between  items-center px-4">
         <h1 className="text-lg font-medium my-3 ">Bank Of Questions</h1>
 
-        <div className="border border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 cursor-pointer"
-              onClick={handleAddClick}>
-            <GrAdd className="text-2xl" />
-            Add Question
-        </div>
+        <div
+  className="border border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 cursor-pointer"
+  onClick={handleAddClick}
+>
+  <GrAdd className="text-2xl" />
+  <span>Add Question</span>
+</div>
           {openEdit && (
     <QuestionsData
     questionId={selectedQuestion}
