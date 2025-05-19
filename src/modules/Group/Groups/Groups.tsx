@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import DeleteConfirmation from "@/modules/shared/Delet-Confirmation/Delet-Confirmation";
+
 import { GroupForm } from "../Group-Form/Group-Form";
 import LoadingScreen from "@/modules/shared/Loading-Screen/Loading-Screen";
 
@@ -18,6 +19,10 @@ export interface Group {
   students: string[];
   max_students: number;
 }
+
+import type{ Group } from "@/Interfaces/QuizInterface";
+
+
 
 export default function Groups() {
   const [groupsData, setGroupsData] = useState<Group[]>();
