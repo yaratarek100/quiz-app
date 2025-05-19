@@ -21,7 +21,8 @@ import ChangePassword from "./modules/Auth/Change-Password-modal/Change-Password
 import Results from "./modules/Results/Results/Results";
 import CompletedQuizzes from "./modules/Results/Completed-Quizzes/Completed-Quizzes";
 import Questions from "./modules/Bank-of-questions/BankOfQuestions";
-import QuizForm from "./modules/quiz/Quiz-Form/Quiz-Form";
+import QuizzesData from "./modules/quiz/QuizzesData/QuizzesData";
+// import QuizForm from "./modules/quiz/Quiz-Form/Quiz-Form";
 
 function App() {
   // local
@@ -58,6 +59,7 @@ function App() {
         { path: "students", element: <Students /> },
         { path: "groups", element: <Groups /> },
         { path: "quizzes", element: <Quizzes /> },
+         {path:"quizzes-data/:id",element:<QuizzesData/> },
         { path: "questions", element: <Questions /> },
         { path: "quiz-page", element: <QuizPage /> },
            { path: "results", element: <CompletedQuizzes /> },
