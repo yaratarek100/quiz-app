@@ -55,10 +55,9 @@ export default function QuizPage() {
               </div>
             </div>
             <div className="flex items-center justify-end px-4 pb-3 sm:pb-0">
-               <Link className='text-decoration-none' to={`/quizzes-data/${quiz._id}`} >Open <span>➤</span></Link>
-              <button  className="text-green-600 font-medium text-sm hover:underline flex items-center gap-1">
-                Open <span>➤</span>
-              </button>
+               <Link  className="text-green-600 font-medium text-sm hover:underline flex items-center gap-1" to={`/dashboard/quizzes-data/${quiz._id}`} >
+               Open <span>➤</span></Link>
+              
             </div>
           </div>
         ))

@@ -11,11 +11,12 @@ export const AUTH_URLS = {
 
 // quizUrls
 export const QUIZ_URLS = {
-  getTopUpcommingQuizzes: "/quiz/incomming",
+  getAll: "/quiz",
   addQuiz: "/quiz",
   getQuiz: (id: string) => `/quiz/${id}`,
   updateQuiz: (id: string) => `/quiz/${id}`,
   getAllQuizzesResults: "/quiz/result",
+  getTopUpcommingQuizzes: "/quiz/incomming",
   getAllCompletedQuizzes: "/quiz/completed",
   joinQuiz: "/quiz/join",
   getQuizWithoutAnswers: (id: string) => `/quiz/without-answers/${id}`,

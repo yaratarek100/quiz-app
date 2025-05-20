@@ -245,7 +245,7 @@ export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
                 Schedule
               </label>
               <div className="flex items-center border border-gray-300 rounded-md w-full px-2 gap-4 bg-white pl-[70px]">
-                <DatePickerDemo className="outline-0 border-0 sm:w-auto" />
+                <DatePickerDemo  className="outline-0 border-0 sm:w-auto" />
                 <div className="flex items-center justify-center sm:w-auto">
                   <FaClock className="mr-2 h-6 w-6 text-black" />
                   <TimePicker
