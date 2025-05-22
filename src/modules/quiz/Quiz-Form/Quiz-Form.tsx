@@ -67,8 +67,11 @@ export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
 
     try {
       const response = await privateUserAxiosInstance.post(QUIZ_URLS.addQuiz, fullData);
+      console.log(response);
+      
       if (response.data?.data?.code) {
         setCreatedCode(response.data.data.code);
+         console.log(response);
       }
       setOpenSuccessDialog(true);
     } catch (error) {

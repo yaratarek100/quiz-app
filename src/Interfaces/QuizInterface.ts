@@ -49,3 +49,27 @@ export interface QuestionI {
   title: string;
   _id: string;
 }
+
+export interface QuizFormInputs {
+  duration: string;
+  numberOfQuestions: string;
+  scorePerQuestion: string;
+  description: string;
+}
+
+export interface QuizData {
+  title: string;
+  duration: number;
+  questions: { id: string }[];
+  score_per_question: number;
+  description: string;
+  schadule: string;
+}
+
+export  interface Quiz {
+  _id: string;
+  title: string;
+  schadule: string;
+  participants: number;
+ 
+}

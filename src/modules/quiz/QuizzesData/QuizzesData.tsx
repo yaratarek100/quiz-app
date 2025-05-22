@@ -183,23 +183,10 @@ import moment from "moment";
 import { DatePickerDemo } from "@/modules/shared/date-picker/date-picker";
 import { FaPen } from "react-icons/fa";
 import { toast } from "react-toastify";
+import type { QuizData, QuizFormInputs } from "@/Interfaces/QuizInterface";
 
 
-interface QuizFormInputs {
-  duration: string;
-  numberOfQuestions: string;
-  scorePerQuestion: string;
-  description: string;
-}
 
-interface QuizData {
-  title: string;
-  duration: number;
-  questions: { id: string }[];
-  score_per_question: number;
-  description: string;
-  schadule: string;
-}
 
 export default function QuizzesData() {
   const { id } = useParams<{ id: string }>();

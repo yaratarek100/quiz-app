@@ -5,15 +5,10 @@ import quizImg from "../../../assets/images/Quiz img.png";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import type { Quiz } from "@/Interfaces/QuizInterface";
 
-// Type 
-interface Quiz {
-  _id: string;
-  title: string;
-  schadule: string;
-  participants: number;
- 
-}
+
+
 
 export default function QuizPage() {
   const [upcommingQuizzes, setUpcommingQuizzes] = useState<Quiz[]>([]);
