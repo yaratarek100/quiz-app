@@ -14,14 +14,14 @@ import Home from "./modules/dash-board/Home/Home";
 import Students from "./modules/Students/Students";
 import Groups from "./modules/Group/Groups/Groups";
 import Quizzes from "./modules/quiz/Quizzes/Quizzes";
-import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
 import { Provider } from "react-redux";
-import store from "./redux/Store";
+import store from "./Redux/Store";
 import ChangePassword from "./modules/Auth/Change-Password-modal/Change-Password-modal";
 import Results from "./modules/Results/Results/Results";
 import CompletedQuizzes from "./modules/Results/Completed-Quizzes/Completed-Quizzes";
 import Questions from "./modules/Bank-of-questions/BankOfQuestions";
 import QuizzesData from "./modules/quiz/QuizzesData/QuizzesData";
+import QuizInterface from "./modules/quiz/Quiz/QuizInterface";
 // import QuizForm from "./modules/quiz/Quiz-Form/Quiz-Form";
 
 function App() {
@@ -61,7 +61,7 @@ function App() {
         { path: "quizzes", element: <Quizzes /> },
          {path:"quizzes-data/:id",element:<QuizzesData/> },
         { path: "questions", element: <Questions /> },
-        { path: "quiz-page", element: <QuizPage /> },
+        { path: "quiz-interface/:id", element: <QuizInterface /> },
            { path: "results", element: <CompletedQuizzes /> },
         { path: "view-results/:index", element: <Results /> },
       ],

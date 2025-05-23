@@ -73,3 +73,35 @@ export  interface Quiz {
   participants: number;
  
 }
+
+export interface IAppState {
+  AuthReduceer: {
+    loginData: {
+      role: string;
+     
+    };
+  };
+ 
+}
+
+export interface IFormData {
+  code: string;
+}
+
+interface IQuizQuestion {
+  _id: string;
+  title: string;
+  options: {
+    A: string;
+    B: string;
+    C: string;
+    D: string;
+    _id: string;
+  };
+}
+
+export  interface IQuizData {
+  _id: string;
+  title: string;
+  questions: IQuizQuestion[];
+}
