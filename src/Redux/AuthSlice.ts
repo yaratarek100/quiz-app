@@ -30,3 +30,5 @@ logOut:function(state){
 export const AuthReduceer= authSlice.reducer;
 export type RootState = ReturnType<typeof store.getState>;
 export const {fillLoginData,logOut}=authSlice.actions;
+export const selectUserRole = (state: RootState) => state.AuthReduceer.loginData?.role;
+
