@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { AuthReduceer } from './AuthSlice'
-import { apis } from '../redux/apis'
+import { AuthReduceer } from './AuthSlice.ts'
+import { apis } from '../Redux/apis.ts'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import completedQuizzesReducer from "../redux/ResultSlice.ts";
+import completedQuizzesReducer from "../Redux/ResultSlice.ts";
 
 
 const store=configureStore({
