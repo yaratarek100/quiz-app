@@ -21,7 +21,7 @@ fillLoginData:function(state,action){
     state.loginData=action.payload
 
 },
-logOut:function(state,_action){
+logOut:function(state){
     state.loginData=null
 }
 
