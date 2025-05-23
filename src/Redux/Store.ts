@@ -8,7 +8,7 @@ import completedQuizzesReducer from "../redux/ResultSlice.ts";
 const store=configureStore({
     reducer:
     {
-        AuthReduceer,
+      AuthReduceer,
       [apis.reducerPath]:apis.reducer,
       completedQuizzes: completedQuizzesReducer,
     },

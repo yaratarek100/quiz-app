@@ -1,6 +1,6 @@
 
 //dashboard
-const MAIN_LIGHT_COLOR="rgba(255, 237, 223, 1)"
+const MAIN_LIGHT_COLOR="rgba(255, 237, 223,1)"
 const LIGHT_GREEN = " rgba(197, 216, 109, 1)"
 
 
