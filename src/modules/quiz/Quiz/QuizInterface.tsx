@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { privateUserAxiosInstance } from "@/services/Axiosinstance";
 import { QUIZ_URLS } from "@/services/Urls";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import type { IQuizData } from "@/Interfaces/QuizInterface";
 
 
@@ -14,6 +14,7 @@ export default function QuizInterface() {
   const [quizData, setQuizData] = useState<IQuizData | null>(null);
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const { id } = useParams() as { id: string };
 
@@ -52,29 +53,41 @@ const isAllAnswered =
 
 
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!quizData) return;
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!quizData) return;
 
-    const formattedAnswers = Object.entries(answers).map(
-      ([question, answer]) => ({
-        question,
-        answer,
-      })
+  const formattedAnswers = Object.entries(answers).map(([question, answer]) => ({
+    question,
+    answer,
+  }));
+
+  try {
+    const response = await privateUserAxiosInstance.post(
+      QUIZ_URLS.submitQuizAnswers(quizData._id),
+      { answers: formattedAnswers }
     );
 
-    try {
-      const response = await privateUserAxiosInstance.post(
-        QUIZ_URLS.submitQuizAnswers(quizData._id),
-        { answers: formattedAnswers }
-      );
-      toast.success(response.data.message || "Submitted successfully!");
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        toast.error(error.response?.data.message || "Something went wrong");
-      }
+    const score = response.data.data?.score; 
+    toast.success(response.data.message || "Submitted successfully!");
+
+      
+    navigate("/dashboard/quiz-result", { state: { score } });
+
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      toast.error(error.response?.data.message || "Something Went Wrong");
     }
-  };
+  }
+};
+
+
+
+
+
+
+
+
 
   if (isLoading) return <div className="text-center p-10">Loading...</div>;
 

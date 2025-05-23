@@ -162,6 +162,7 @@ import { Provider } from "react-redux";
 import store from "./Redux/Store";
 import Unauthorized from "./modules/shared/Unauthorized/Unauthorized";
 import ProtectedRoute from "./modules/shared/Protected-Route/Protected-Route";
+import QuizResult from "./modules/quiz/QuizResult/QuizResult";
 
 const lng = cookies.get("i18next") || "en";
 
@@ -214,6 +215,7 @@ const routes = createBrowserRouter([
             children: [
               { path: "quiz-interface/:id", element: <QuizInterface /> },
               { path: "view-results/:index", element: <Results /> },
+              { path: "quiz-result", element: <QuizResult /> }
             ],
           },
 
