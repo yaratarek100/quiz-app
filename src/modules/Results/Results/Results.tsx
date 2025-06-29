@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import type { RootState } from "@/redux/Store";
+import type { RootState } from "@/Redux/Store1";
 
 export default function Results() {
   const [thisQuiz, setThisQuiz] = useState<any>(null);
@@ -29,11 +29,13 @@ export default function Results() {
   return (
     <>
       <h1 className="text-2xl font-semibold my-3">
-        <Link to="/dashboard/results" className="hover:text-lime-500">Quizzes</Link>
-      <span className="mx-3 text-lime-400">{">>"}</span>
-      {thisQuiz?.quiz?.title}
+        <Link to="/dashboard/results" className="hover:text-lime-500">
+          Quizzes
+        </Link>
+        <span className="mx-3 text-lime-400">{">>"}</span>
+        {thisQuiz?.quiz?.title}
       </h1>
-      
+
       <div className="p-4 py-1 pb-4 border rounded-md my-4">
         <h1 className="text-lg font-medium my-3 ">Results</h1>
         <Table className="border-separate border-spacing-y-2">
