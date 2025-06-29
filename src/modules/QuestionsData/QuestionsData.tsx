@@ -29,7 +29,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AxiosError } from 'axios';
-import { DialogClose } from '@radix-ui/react-dialog';
 
 interface IQuestionsPropsData {
   questionId?: string;
@@ -203,7 +202,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                       <FormField
                         key={option}
                         control={form.control}
-                        name={`options.${option}`}
+                        name={`options.${option}` as `options.A` | `options.B` | `options.C` | `options.D`}
                         rules={{ required: `Option ${option} is required` }}
                         render={({ field, fieldState }) => (
                           <FormItem>

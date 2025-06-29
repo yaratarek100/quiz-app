@@ -25,13 +25,13 @@ import CreatedSuccessfully from "@/modules/shared/Created-Successfully/CreatedSu
 import type{ QuizFormProps,QuizFormValues,Group } from "@/Interfaces/QuizInterface";
 
 export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
-  const { register, handleSubmit, setValue, control, formState: { errors }, reset } = useForm<QuizFormValues>({
+  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<QuizFormValues>({
     defaultValues: {},
   });
 
   const [groupsData, setGroupsData] = useState<Group[]>();
   const [time, setTime] = useState<string | null>("10:22");
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [selectedDate, _setSelectedDate] = useState<Date | null>(new Date());
   const [createdCode, setCreatedCode] = useState("");
   const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
 
@@ -370,7 +370,7 @@ export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
                         <FaChevronDown />
                       </DropdownMenuTrigger>
                      <DropdownMenuContent className="mt-2 w-full">
-                      {groupsData && groupsData.map((group, index) => (
+                      {groupsData && groupsData.map((group) => (
                         <DropdownMenuItem
                           key={group._id}
                           onClick={() => field.onChange(group._id)}
