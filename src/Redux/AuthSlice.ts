@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type store from "../Redux/Store";
+import type store from "../Redux/Store1";
 import type { ILogin_ProfileData } from "@/Interfaces/AuthInterface";
 
 interface IAuthState {

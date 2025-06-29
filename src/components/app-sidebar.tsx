@@ -1,7 +1,7 @@
-import { Home } from "lucide-react"
+import { Home } from "lucide-react";
 import { MdGroups2 } from "react-icons/md";
 import { IoIosAlarm } from "react-icons/io";
-import logo from "../assets/images/logo.png"
+import logo from "../assets/images/logo.png";
 import { PiExam } from "react-icons/pi";
 
 import {
@@ -13,10 +13,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import { THEMECOLOR } from "@/services/ThemeColors";
 import { useSelector } from "react-redux";
-import type { RootState } from "@/redux/Store";
+import type { RootState } from "@/Redux/Store1";
 
 // Menu items.
 const items = [
@@ -24,38 +24,39 @@ const items = [
     title: "Dashboard",
     url: "/dashboard",
     icon: Home,
-    forStudent: true
+    forStudent: true,
   },
   {
     title: "Students",
     url: "/dashboard/students",
     icon: Home,
-    forStudent: false
+    forStudent: false,
   },
   {
     title: "Groups",
     url: "/dashboard/groups",
     icon: MdGroups2,
-    forStudent: false
+    forStudent: false,
   },
   {
     title: "Quizzes",
     url: "/dashboard/quizzes",
     icon: IoIosAlarm,
-    forStudent: true
+    forStudent: true,
   },
   {
     title: "Results",
     url: "/dashboard/results",
     icon: PiExam,
-    forStudent: true
+    forStudent: true,
   },
-
-]
+];
 
 export function AppSidebar() {
-  const userData = useSelector((state:RootState) => state.AuthReduceer.loginData);
-  console.log(userData?.role)
+  const userData = useSelector(
+    (state: RootState) => state.AuthReduceer.loginData
+  );
+  console.log(userData?.role);
   const isStudent = userData?.role === "Student";
 
   // Filter items: show all for instructors, only forStudent-true for students
@@ -73,7 +74,10 @@ export function AppSidebar() {
           <SidebarGroupContent className="my-5">
             <SidebarMenu>
               {visibleItems.map((item) => (
-                <SidebarMenuItem key={item.title} className="border-top-1 border-b-1">
+                <SidebarMenuItem
+                  key={item.title}
+                  className="border-top-1 border-b-1"
+                >
                   <SidebarMenuButton asChild className="py-8 my-0">
                     <a href={item.url} className="px-6">
                       <div

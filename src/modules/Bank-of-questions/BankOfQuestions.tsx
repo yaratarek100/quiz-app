@@ -23,7 +23,6 @@ import QuestionsData from "../QuestionsData/QuestionsData";
 
 
 export default function Questions() {
-  const [questionData, setQuestionData] = useState<QuestionI | null>(null);
   const [questions, setQuestions] = useState<QuestionI[] | null>(null);
   const [openDeletion, setOpenDeletion] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -54,7 +53,8 @@ export default function Questions() {
     const handleDelete = async (selectedQuestion: string) => {
       if (!selectedQuestion) return;
       try {
-        const response = await privateUserAxiosInstance.delete(
+        // const response = 
+        await privateUserAxiosInstance.delete(
           QUESTIONS_URLS.deleteQuestion(selectedQuestion)
         );
         toast.success("Group deleted successfully");
@@ -67,11 +67,11 @@ export default function Questions() {
       }
     };
 
-  function handelView(id: string) {
-    setSelectedQuestion(id);
-    setOpenView(true);
+  // function handelView(id: string) {
+  //   setSelectedQuestion(id);
+  //   setOpenView(true);
 
-  }
+  // }
   function handleDeleteClick(id: string) {
     setSelectedQuestion(id);
     setOpenDeletion(true);
@@ -110,7 +110,7 @@ export default function Questions() {
 </div>
           {openEdit && (
     <QuestionsData
-    questionId={selectedQuestion}
+     questionId={selectedQuestion ?? undefined}
     onClose={() => setOpenEdit(false)}
     onSuccess={() => {
       setOpenEdit(false);

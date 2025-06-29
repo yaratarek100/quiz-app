@@ -2,7 +2,6 @@
 import "./App.css";
 import { Bounce, ToastContainer } from "react-toastify";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import cookies from "js-cookie";
 import Authlayout from "./modules/Auth/Authlayout/Authlayout";
 import Notfound from "./modules/shared/Notfound/Notfound";
 import Login from "./modules/Auth/Login/Login";
@@ -21,7 +20,7 @@ import Questions from "./modules/Bank-of-questions/BankOfQuestions";
 import CompletedQuizzes from "./modules/Results/Completed-Quizzes/Completed-Quizzes";
 import Results from "./modules/Results/Results/Results";
 import { Provider } from "react-redux";
-import store from "./Redux/Store";
+import store from "./Redux/Store1";
 import Unauthorized from "./modules/shared/Unauthorized/Unauthorized";
 import ProtectedRoute from "./modules/shared/Protected-Route/Protected-Route";
 import QuizResult from "./modules/quiz/QuizResult/QuizResult";
