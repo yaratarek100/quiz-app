@@ -11,14 +11,14 @@ import DeleteConfirmation from "@/modules/shared/Delet-Confirmation/Delet-Confir
 import { GroupForm } from "../Group-Form/Group-Form";
 import LoadingScreen from "@/modules/shared/Loading-Screen/Loading-Screen";
 
-export interface Group {
-  _id: string;
-  name: string;
-  status: "active" | "inactive";
-  instructor: string;
-  students: string[];
-  max_students: number;
-}
+// export interface Group {
+//   _id: string;
+//   name: string;
+//   status: "active" | "inactive";
+//   instructor: string;
+//   students: string[];
+//   max_students: number;
+// }
 
 import type{ Group } from "@/Interfaces/QuizInterface";
 

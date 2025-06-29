@@ -16,7 +16,7 @@ export default function CreatedSuccessfully({
   itemType,
   code,
 }: CreatedSuccessfullyProps) {
-  const [loading, setLoading] = useState(false);
+  const [loading, _setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const handleCopy = () => {
     navigator.clipboard.writeText(code);

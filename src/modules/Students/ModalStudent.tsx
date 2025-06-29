@@ -1,13 +1,11 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,  
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import type { Student } from "@/Interfaces/StudentsInteface"
 
 export function ModalStudent({open,setOpen,student}:{

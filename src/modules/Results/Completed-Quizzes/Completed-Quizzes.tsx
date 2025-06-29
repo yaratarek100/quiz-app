@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { QuizI } from "@/Interfaces/QuizInterface";
 import { useDispatch } from "react-redux";
-import { setCompletedQuizzes } from "../../../redux/ResultSlice";
+import { setCompletedQuizzes } from "../../../Redux/ResultSlice";
 
 export default function CompletedQuizzes() {
   const [completedQuizzes, setCompletedQuizzess] = useState<QuizI[] | null>(
