@@ -11,10 +11,10 @@ export default function Masterlayout() {
     <>
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <div className='relative'>
         <SidebarTrigger />
 
-      </main>
+      </div>
 
 <div className='flex flex-col w-full'>
   <Navbar/>

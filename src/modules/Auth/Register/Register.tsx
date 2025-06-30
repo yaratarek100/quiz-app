@@ -119,9 +119,9 @@ export default function Register() {
           <div className="bottom flex justify-between items-center">
     <Button  type="submit" className="bg-white text-black hover:bg-white">{isSubmitting?<>
       <div className="w-4 h-4 border-4 border-black border-t-transparent rounded-full animate-spin "></div>
-      <span>Loading...</span>
+      <span>Loading</span>
     </>
-:"Sign Up"} <FaCheckCircle/></Button>
+:<><FaCheckCircle/> Sign Up </>}</Button>
       
     
     </div>

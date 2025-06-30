@@ -70,11 +70,11 @@ register={register}
    password={password}
    />
     <div className="bottom flex justify-between items-center">
-    <Button className="bg-white text-black hover:bg-white">{isSubmitting?<>
+    <Button className="bg-white text-black hover:bg-white cursor-pointer">{isSubmitting?<>
       <div className="w-4 h-4 border-4 border-black border-t-transparent rounded-full animate-spin "></div>
-      <span>Loading...</span>
+      <span>Loading</span>
     </>
-:"Sign In"} <FaCheckCircle/></Button>
+: <><FaCheckCircle/>  Sign In </>}</Button>
       
       <p className="text-white">Forgot password? <Link to={'/forget-password'} className="text-[#F8B55F] underline">click here</Link></p> 
 
