@@ -3,6 +3,7 @@ import { MdGroups2 } from "react-icons/md";
 import { IoIosAlarm } from "react-icons/io";
 import logo from "../assets/images/Logo-white-CvOpj-Kx.png" ;
 import { PiExam } from "react-icons/pi";
+import { FaUserGraduate } from "react-icons/fa";
 
 import {
   Sidebar,
@@ -14,7 +15,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { THEMECOLOR } from "@/services/ThemeColors";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/Redux/Store1";
 
@@ -29,7 +29,7 @@ const items = [
   {
     title: "Students",
     url: "/dashboard/students",
-    icon: Home,
+    icon: FaUserGraduate,
     forStudent: false,
   },
   {
@@ -56,7 +56,6 @@ export function AppSidebar() {
   const userData = useSelector(
     (state: RootState) => state.AuthReduceer.loginData
   );
-  console.log(userData?.role);
   const isStudent = userData?.role === "Student";
 
   // Filter items: show all for instructors, only forStudent-true for students
@@ -82,7 +81,6 @@ export function AppSidebar() {
                     <a href={item.url} className="px-6">
                       <div
                         className="text-base  p-2 my-3 "
-                        // style={{ backgroundColor: THEMECOLOR.mainLightColor }}
 
                       >
                         <item.icon size={33} />

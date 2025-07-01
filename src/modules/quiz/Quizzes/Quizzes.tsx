@@ -1,23 +1,25 @@
 import Questions from "../../../assets/images/questions.svg";
 import newQuiz from "../../../assets/images/new quiz icon.svg";
 import { useState } from "react";
-import QuizForm from "../Quiz-Form/Quiz-Form";
 import QuizPage from "../Quiz-Page/Quiz-Page";
 import CompletedQuizzes from "../CompletedQuizzes/CompletedQuizzes";
 import { useSelector } from "react-redux";
 import { JoinQuiz } from "../Join-Quiz/Join-Quiz";
 import type { IAppState } from "@/Interfaces/QuizInterface";
+import { useDispatch } from "react-redux";
+import { openModal } from "@/Redux/ModalSlice";
+
+
 
 // Define the type for your Redux state
 
 
 export default function Quizzes() {
-  const [openDialog, setOpenDialog] = useState(false);
+  const dispatch = useDispatch();
   const [openJoinQuiz, setOpenJoinQuiz] = useState(false);
 
   // Use the defined type for the state parameter
   const loginData = useSelector((state: IAppState) => state.AuthReduceer.loginData);
-  console.log(loginData.role);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 my-6">
@@ -35,7 +37,7 @@ export default function Quizzes() {
         ) : (
           <>
             <div
-              onClick={() => setOpenDialog(true)}
+              onClick={() => dispatch(openModal())}
               className="cursor-pointer flex flex-col items-center text-center px-4 py-10 border border-gray-300 rounded hover:shadow-lg hover:bg-gray-50"
             >
               <img src={newQuiz} className="pb-3" alt="New Quiz" />
@@ -68,7 +70,7 @@ export default function Quizzes() {
       </div>
 
       {/* Dialog */}
-      <QuizForm openDialog={openDialog} setOpenDialog={setOpenDialog} />
+     
       {openJoinQuiz && <JoinQuiz openJoinQuiz={openJoinQuiz} setOpenJoinQuiz={setOpenJoinQuiz} />}
     </div>
   );

@@ -266,7 +266,7 @@ function SidebarTrigger({
       variant="ghost"
       size="icon"
       className={cn(
-        "size-7 text-white bg-indigo-950 cursor-pointer rounded-s-none absolute",
+        "size-7 text-white bg-indigo-950 cursor-pointer rounded-s-none absolute h-[50px] w-[30px] mt-3 pe-1",
         className
       )}
       onClick={(event) => {

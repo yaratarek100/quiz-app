@@ -4,12 +4,12 @@ export interface CreatedSuccessfullyProps {
   itemType: string;
   code: string;
 }
-export interface QuizFormProps {
-  openDialog: boolean;
-  setOpenDialog: (open: boolean) => void;
-  itemType?: string;
-  handleDelete?: () => void;
-}
+// export interface QuizFormProps {
+//   openDialog: boolean;
+//   setOpenDialog: (open: boolean) => void;
+//   itemType?: string;
+//   handleDelete?: () => void;
+// }
 
 export interface QuizFormValues {
   title: string;

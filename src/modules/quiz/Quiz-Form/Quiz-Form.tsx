@@ -22,9 +22,20 @@ import { GROUPS_URLS, QUIZ_URLS } from "@/services/Urls";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import CreatedSuccessfully from "@/modules/shared/Created-Successfully/CreatedSuccessfully";
-import type{ QuizFormProps,QuizFormValues,Group } from "@/Interfaces/QuizInterface";
+import type{ QuizFormValues,Group } from "@/Interfaces/QuizInterface";
 
-export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "@/Redux/Store1";
+import { closeModal } from "@/Redux/ModalSlice";
+
+export default function QuizForm() {
+
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state: RootState) => state.modal.isOpen);
+
+
+
+
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<QuizFormValues>({
     defaultValues: {},
   });
@@ -67,11 +78,9 @@ export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
 
     try {
       const response = await privateUserAxiosInstance.post(QUIZ_URLS.addQuiz, fullData);
-      console.log(response);
       
       if (response.data?.data?.code) {
         setCreatedCode(response.data.data.code);
-         console.log(response);
       }
       setOpenSuccessDialog(true);
     } catch (error) {
@@ -82,13 +91,13 @@ export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
   };
 
   const handleDialogClose = () => {
-    setOpenDialog(false);
+    dispatch(closeModal())
     reset(); // Reset the form when the dialog is closed
   };
 
   return (
-    <Dialog open={openDialog} onOpenChange={(open) => !open && handleDialogClose()}>
-      <DialogContent>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && handleDialogClose()} >
+      <DialogContent className="max-w-[900px]" hideClose={true}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-between items-center">
             <DialogTitle>Set up a new quiz</DialogTitle>
@@ -97,14 +106,14 @@ export default function QuizForm({ openDialog, setOpenDialog }: QuizFormProps) {
                 type="submit"
                 title="Submit Quiz"
                 aria-label="Submit Quiz"
-                className="text-black text-3xl font-bold"
+                className="text-black text-3xl font-bold cursor-pointer hover:opacity-30"
               >
                 <FiCheck />
               </button>
               <button
                 type="button"
                 onClick={handleDialogClose}
-                className="text-black text-3xl font-bold"
+                className="text-black text-3xl font-bold cursor-pointer hover:opacity-30"
               >
                 <FiX />
               </button>
