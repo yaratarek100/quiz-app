@@ -17,7 +17,7 @@ initialState:initialState,
 reducers:{
     // takes 2 params prev state+action
 fillLoginData:function(state,action){
-    console.log(state,action)
+    // console.log(state,action)
     state.loginData=action.payload
 
 },

@@ -22,6 +22,7 @@ import { logOut } from "@/Redux/AuthSlice";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import { openModal } from "@/Redux/ModalSlice";
+import { openJoinQuizModal } from "@/Redux/JoinQuizSlice";
 
 import newQuiz from "../../../assets/images/new quiz icon.svg";
 
@@ -74,7 +75,8 @@ export default function Navbar() {
                           New Quiz
                         </div>
                       ) : (
-                        <div onClick={() => dispatch(openModal())}>
+                        <div onClick={() => dispatch(openJoinQuizModal())}> 
+                        {/* هنا استدعيتها بس مش بتفتح */}
                           <img src={newQuiz} className="inline size-6 me-2" alt="Quiz Icon" />
                           Join Quiz
                         </div>

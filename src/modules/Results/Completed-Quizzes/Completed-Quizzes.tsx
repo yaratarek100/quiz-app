@@ -16,7 +16,7 @@ import type { QuizI } from "@/Interfaces/QuizInterface";
 import { useDispatch } from "react-redux";
 import { setCompletedQuizzes } from "../../../Redux/ResultSlice";
 
-export default function CompletedQuizzes() {
+export default function CompletedQuizzes2() {
   const [completedQuizzes, setCompletedQuizzess] = useState<QuizI[] | null>(
     null
   );
@@ -32,6 +32,7 @@ export default function CompletedQuizzes() {
         QUIZ_URLS.getAllQuizzesResults
       );
       setCompletedQuizzess(data);
+      console.log(data);
        dispatch(setCompletedQuizzes(data));
     } catch (error) {
       const axiosError = error as AxiosError;

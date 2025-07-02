@@ -4,12 +4,26 @@ export interface CreatedSuccessfullyProps {
   itemType: string;
   code: string;
 }
-// export interface QuizFormProps {
-//   openDialog: boolean;
-//   setOpenDialog: (open: boolean) => void;
-//   itemType?: string;
-//   handleDelete?: () => void;
-// }
+
+export interface IQuiz {
+  code: string;
+  title: string;
+  description: string;
+  status: boolean;
+  instructor: string;
+  group: string;
+  questions_number: number;
+  questions: [string];
+  schadule: string;
+  duration: number;
+  score_per_question: number;
+  type: string;
+  difficulty: string;
+  _id: string;
+  updatedAt: string;
+  createdAt: string;
+  __v: 0;
+}
 
 export interface QuizFormValues {
   title: string;

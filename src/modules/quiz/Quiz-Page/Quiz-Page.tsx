@@ -16,7 +16,7 @@ export default function QuizPage() {
   const getUpcommingQuizzes = async () => {
     try {
       const result = await privateUserAxiosInstance(QUIZ_URLS.getTopUpcommingQuizzes);
-      console.log(result.data);
+      // console.log(result.data);
       setUpcommingQuizzes(result.data);
     } catch (error) {
       console.log(error);

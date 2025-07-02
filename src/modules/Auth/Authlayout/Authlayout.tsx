@@ -1,5 +1,4 @@
-
-import authImg from '../../../assets/images/authImage-BgKXNIO-.svg'
+import backgroundImg from '../../../assets/images/top-view-office-stationery-with-pen-notebook.jpg'
 import logo from '../../../assets/images/Logo-white-CvOpj-Kx.png'
 import { Link, Outlet, useLocation } from "react-router-dom";
 import type { IAuth } from "../../../Interfaces/AuthLayoutInterface";
@@ -37,16 +36,16 @@ const {  title } = routePropsMap[pathname] || {
 };
   return <>
 
-  <div className="grid md:grid-cols-2 gap-3 grid-cols-1 bg-[#0D1321] min-h-screen ">
+  <div className="grid md:grid-cols-2 gap-3 grid-cols-1 min-h-screen w-full bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImg})` }}>
 <div className="form-inputs  md:py-6 md:px-8 px-4 py-3 ">
 <img src={logo} alt="logo" className="pb-12" />
-<p className="mb-5 text-[#F8B55F] font-bold text-2xl">{title}</p>
+<p className="mb-5  font-bold text-2xl">{title}</p>
 {['/', '/login', '/register'].includes(pathname)?<div className="flex gap-5">
-  <Link to={'/login'} className={`p-3 w-[162px] h-[112px] flex-col flex items-center rounded-md justify-center border-4 bg-[#333333] ${pathname==='/'||pathname==='/login'? 'border-[#f8b55f] ':'border-transparent' }` }>
+  <Link to={'/login'} className={`p-3 w-[162px] h-[112px] flex-col flex items-center rounded-md justify-center border-4  ${pathname==='/'||pathname==='/login'? ' ':'border-transparent' }` }>
   <FaUserTie color="white" className="text-6xl"/>
 <p className="text-white fw-bold mt-2">Sign in</p>
 </Link>
-  <Link to={'/register'} className={`p-3 w-[162px] h-[112px] flex-col flex items-center rounded-md justify-center border-4 bg-[#333333] ${pathname==='/register'? 'border-[#f8b55f] ':'border-transparent'}`}>
+  <Link to={'/register'} className={`p-3 w-[162px] h-[112px] flex-col flex items-center rounded-md justify-center border-4  ${pathname==='/register'? ' ':'border-transparent'}`}>
   <FaUserPlus   color="white" className="text-6xl"/>
 <p className="text-white fw-bold mt-2">Sign up</p>
 </Link>
@@ -56,9 +55,7 @@ const {  title } = routePropsMap[pathname] || {
 
 </div>
 </div>
-<div className="image md:block hidden bg-info p-6">
-  <img src={authImg} alt="auth-img" className="w-full max-h-screen "  />
-</div>
+
   </div>
   </>;
 

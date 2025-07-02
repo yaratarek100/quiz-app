@@ -22,7 +22,7 @@ export default function Results() {
     if (index && quizzes && quizzes.length > 0) {
       const quizIndex = Number(index);
       setThisQuiz(quizzes[quizIndex]);
-      console.log(quizzes[quizIndex]);
+      // console.log(quizzes[quizIndex]);
     }
   }, [index, quizzes]);
 

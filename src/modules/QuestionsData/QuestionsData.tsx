@@ -130,9 +130,10 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
   }, [setValue, questionId, isUpdate]);
 
   return (
-    <Dialog open={openDialog} onOpenChange={(open) => !open && handleDialogClose()}>
+    <Dialog open={openDialog} onOpenChange={(open) => !open && handleDialogClose()}  >
  
       <DialogContent
+       hideClose={true}
         className="w-full max-w-[90vw] md:max-w-[700px] lg:max-w-[800px] p-6 [&>[data-radix-dialog-close]]:text-white"
       >
 
@@ -144,10 +145,10 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
               <div className="flex justify-between items-center">
                 <DialogTitle>{isUpdate ? "Edit Question" : "Set up a new question"}</DialogTitle>
                 <div className="flex items-center gap-5">
-                  <button type="submit" title="Submit" className="text-black text-3xl font-bold">
+                  <button type="submit" title="Submit" className="text-black cursor-pointer hover:opacity-50 text-3xl font-bold">
                     <FiCheck />
                   </button>
-                  <button type="button" onClick={handleDialogClose} className="text-black text-3xl font-bold">
+                  <button type="button" onClick={handleDialogClose} className="text-black cursor-pointer hover:opacity-50 text-3xl font-bold">
                     <FiX />
                   </button>
                 </div>

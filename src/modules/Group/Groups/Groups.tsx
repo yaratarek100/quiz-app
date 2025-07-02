@@ -38,7 +38,7 @@ export default function Groups() {
   };
 
 
-  console.log("groupToDelete", groupToDelete);
+  // console.log("groupToDelete", groupToDelete);
 
   //fetchGroups
   const fetchGroups = async () => {
@@ -48,7 +48,7 @@ export default function Groups() {
       const response = await privateUserAxiosInstance.get(
         GROUPS_URLS.getAllGroups
       );
-      console.log("response", response.data);
+      // console.log("response", response.data);
       setGroupsData(response.data);
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -65,12 +65,11 @@ export default function Groups() {
   const handleDelete = async (groupId: string) => {
     if (!groupId) return;
     try {
-      const response = await privateUserAxiosInstance.delete(
+       await privateUserAxiosInstance.delete(
         GROUPS_URLS.deleteGroup(groupId)
 
 
       );
-      console.log(response);
       toast.success("Group deleted successfully");
       fetchGroups();
       setOpenDialog(false);

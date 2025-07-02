@@ -33,8 +33,11 @@ export default function Login() {
       const {data}=await publicUserAxiosInstance.post(AUTH_URLS.login,values)
       toast.success(data?.message)
       localStorage.setItem('token',data?.data?.accessToken)
+      
+      console.log(localStorage.getItem('token'));
       dispatch(fillLoginData(data?.data?.profile))
       localStorage.setItem("user", JSON.stringify(data?.data?.profile));
+      console.log(localStorage.getItem('user'));
       navigate('/dashboard')
     } catch (error) {
       console.log(error)
@@ -76,7 +79,7 @@ register={register}
     </>
 : <><FaCheckCircle/>  Sign In </>}</Button>
       
-      <p className="text-white">Forgot password? <Link to={'/forget-password'} className="text-[#F8B55F] underline">click here</Link></p> 
+      <p className="text-white">Forgot password? <Link to={'/forget-password'} className=" underline">click here</Link></p> 
 
     </div>
   </form>
