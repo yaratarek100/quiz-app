@@ -88,20 +88,20 @@ export default function Groups() {
 
 if (isLoading) return <LoadingScreen/> 
   return (
-    <div className="w-full max-w-6xl m-auto p-4 border border-gray-400 rounded-lg">
-      <div className="flex items-center justify-between pb-5">
-        <h1 className="text-xl">Groups list</h1>
+    <div className="w-full max-w-6xl m-auto px-6 pt-2 pb-4 border border-gray-400 rounded-lg">
+      <div className="flex  items-center justify-between flex-wrap pb-5">
+        <h1 className="text-xl ">Groups list</h1>
 
         <div className="flex items-center">
 
           <div
             onClick={() => { setGroupToEdit(null); setOpenAddDialog(true); }}
-            className="border border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 
+            className="border mt-2 border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 
     hover:bg-gray-100 hover:scale-105 transition-transform duration-300 cursor-pointer"
           >
             <FaPlus className="text-xl text-white bg-black rounded-full p-0.5" />
 
-            <h3 className="text-lg font-semibold" >Add Group</h3>
+            <h3 className="text-lg font-semibold whitespace-nowrap" >Add Group</h3>
           </div>
 
 

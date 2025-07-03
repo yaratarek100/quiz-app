@@ -126,7 +126,7 @@ export default function QuizForm() {
             <div className="relative col-span-3">
               <label
                 htmlFor="title"
-                className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded"
               >
                 Title:
               </label>
@@ -146,7 +146,7 @@ export default function QuizForm() {
               <div className="relative w-full md:w-[32%]">
                 <label
                   htmlFor="duration"
-                  className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                  className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93] text-black px-2 py-2 z-10 rounded"
                 >
                   Duration (in minutes)
                 </label>
@@ -169,7 +169,7 @@ export default function QuizForm() {
               </div>
 
               <div className="relative w-full md:w-[32%]">
-                <label className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded">
+                <label className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded">
                   No. of Questions
                 </label>
                 <Controller
@@ -205,7 +205,7 @@ export default function QuizForm() {
               <div className="relative w-full md:w-[32%]">
                 <label
                   htmlFor="score_per_question"
-                  className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                  className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded"
                 >
                   Score per Question
                 </label>
@@ -231,7 +231,7 @@ export default function QuizForm() {
             <div className="relative col-span-3 my-4">
               <label
                 htmlFor="description"
-                className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded"
               >
                 Description:
               </label>
@@ -252,7 +252,7 @@ export default function QuizForm() {
             <div className="relative w-full sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%]">
               <label
                 htmlFor="schedule"
-                className="font-bold absolute left-0 -top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                className="font-bold absolute left-0 -top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded"
               >
                 Schedule
               </label>
@@ -277,7 +277,7 @@ export default function QuizForm() {
               <div className="relative w-full md:w-[32%]">
                 <label
                   htmlFor="difficulty"
-                  className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                  className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded"
                 >
                   Difficulty
                 </label>
@@ -319,7 +319,7 @@ export default function QuizForm() {
               <div className="relative w-full md:w-[32%]">
                 <label
                   htmlFor="type"
-                  className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                  className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded"
                 >
                   Category type
                 </label>
@@ -362,7 +362,7 @@ export default function QuizForm() {
               <div className="relative w-full md:w-[32%]">
                 <label
                   htmlFor="type"
-                  className="font-bold absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                  className="font-bold absolute left-0 top-0 text-sm bg-[#cdfa93]  text-black px-2 py-2 z-10 rounded"
                 >
                   Group name
                 </label>

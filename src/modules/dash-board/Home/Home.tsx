@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { THEMECOLOR } from "@/services/ThemeColors";
 import { privateUserAxiosInstance } from "@/services/Axiosinstance";
 import { QUIZ_URLS, STUDENTS_URLS } from "@/services/Urls";
 import { useEffect, useState } from "react";
@@ -78,10 +77,9 @@ useEffect(() => {
             <div className="flex justify-end items-center px-4">
               <Link to="/dashboard/quizzes">
                 <div className="flex items-center space-x-2">
-                  <span className="text-lg font-semibold">Quiz Directory</span>
+                  <span className="text-base font-semibold text-lime-300">Quiz Directory</span>
                   <FaArrowRightLong
-                    style={{ color: THEMECOLOR.lightGreen }}
-                    className="text-2xl"
+                    className="text-xl text-lime-300"
                   />
                 </div>
               </Link>
@@ -125,10 +123,9 @@ useEffect(() => {
               <div className="flex justify-end items-center px-4">
                 <Link to="/dashboard/quizzes">
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg font-semibold">All Students</span>
+                    <span className="text-base font-semibold text-lime-300">All Students</span>
                     <FaArrowRightLong
-                      style={{ color: THEMECOLOR.lightGreen }}
-                      className="text-2xl"
+                      className="text-xl text-lime-300"
                     />
                   </div>
                 </Link>
