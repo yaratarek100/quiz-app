@@ -25,7 +25,7 @@ export default function Students() {
       <div className="border border-[rgba(0, 0, 0, 0.2)] rounded-md p-5">
         <h3 className="text-[rgba(0, 0, 0, 1)] text-[20px]">Students list</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3  gap-4 mt-4">
-          {data?.map((student, index) => (
+          {data?.map((student) => (
             <div
               className="flex border rounded-md border-[rgba(0, 0, 0, 0.2)]  p-4 "
               key={student._id}
