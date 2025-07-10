@@ -37,7 +37,7 @@ export default function AuthLayout() {
       <div className="grid lg:grid-cols-2 gap-3 grid-cols-1 min-h-screen w-full bg-cover bg-center bg-[radial-gradient(circle_at_center,_#0b132b,_#1c2541,_#3a506b)] p-4 ">
         <div className="form-inputs  md:py-6 md:px-8 px-4 py-3 col-span-1  ">
           <img src={logo} alt="logo" className="pb-12" />
-          <p className="mb-5  font-bold text-[300%] w-[105%] text-center text-white">{title}</p>
+          <p className="mb-5  font-bold text-[270%] w-[105%] text-center text-white">{title}</p>
           {["/", "/login", "/register"].includes(pathname) ? (
             <div className="flex gap-20 my-8 justify-center">
               <Link
