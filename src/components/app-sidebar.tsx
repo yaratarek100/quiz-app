@@ -1,8 +1,9 @@
 import { Home } from "lucide-react";
 import { MdGroups2 } from "react-icons/md";
 import { IoIosAlarm } from "react-icons/io";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/Logo-white-CvOpj-Kx.png" ;
 import { PiExam } from "react-icons/pi";
+import { FaUserGraduate } from "react-icons/fa";
 
 import {
   Sidebar,
@@ -14,7 +15,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { THEMECOLOR } from "@/services/ThemeColors";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/Redux/Store1";
 
@@ -29,7 +29,7 @@ const items = [
   {
     title: "Students",
     url: "/dashboard/students",
-    icon: Home,
+    icon: FaUserGraduate,
     forStudent: false,
   },
   {
@@ -56,7 +56,6 @@ export function AppSidebar() {
   const userData = useSelector(
     (state: RootState) => state.AuthReduceer.loginData
   );
-  console.log(userData?.role);
   const isStudent = userData?.role === "Student";
 
   // Filter items: show all for instructors, only forStudent-true for students
@@ -68,7 +67,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="my-5">
+          <SidebarGroupLabel className="mx-5 my-8 p-6 py-8 rounded-2xl bg-indigo-950 ">
             <img src={logo} alt="logo" />
           </SidebarGroupLabel>
           <SidebarGroupContent className="my-5">
@@ -81,10 +80,10 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild className="py-8 my-0">
                     <a href={item.url} className="px-6">
                       <div
-                        className="text-[90px]"
-                        style={{ backgroundColor: THEMECOLOR.mainLightColor }}
+                        className="text-base  p-2 my-3 "
+
                       >
-                        <item.icon size={35} />
+                        <item.icon size={33} />
                       </div>
                       <span className="font-bold">{item.title}</span>
                     </a>

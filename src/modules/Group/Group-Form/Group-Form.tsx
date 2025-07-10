@@ -144,7 +144,7 @@ export function GroupForm({
             <div className="relative col-span-3">
               <label
                 htmlFor="name"
-                className="absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                className="absolute left-0 top-0 text-sm   px-2 py-2 z-10 rounded"
               >
                 Group Name
               </label>
@@ -159,7 +159,7 @@ export function GroupForm({
             <div className="relative col-span-3">
               <label
                 htmlFor="ListStudents"
-                className="absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded"
+                className="absolute left-0 top-0 text-sm   px-2 py-2 z-10 rounded"
               >
                 List Students
               </label>
@@ -181,13 +181,13 @@ export function GroupForm({
                 <PopoverContent className="w-[300px]" side="bottom">
                   <div className="flex flex-col space-y-2 max-h-[200px] overflow-y-auto">
                     {students.map((student) => (
-                      <label key={student._id} className="flex items-center space-x-2">
+                      <p key={student._id} className="flex items-center space-x-2">
                         <Checkbox
                           checked={selectedStudents.includes(student._id)}
                           onCheckedChange={() => toggleValue(student._id)}
                         />
                         <span>{student.first_name} {student.last_name}</span>
-                      </label>
+                      </p>
                     ))}
                   </div>
                 </PopoverContent>

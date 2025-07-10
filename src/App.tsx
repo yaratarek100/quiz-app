@@ -17,13 +17,14 @@ import Quizzes from "./modules/quiz/Quizzes/Quizzes";
 import QuizzesData from "./modules/quiz/QuizzesData/QuizzesData";
 import QuizInterface from "./modules/quiz/Quiz/QuizInterface";
 import Questions from "./modules/Bank-of-questions/BankOfQuestions";
-import CompletedQuizzes from "./modules/Results/Completed-Quizzes/Completed-Quizzes";
+import CompletedQuizzes2 from "./modules/Results/Completed-Quizzes/Completed-Quizzes";
 import Results from "./modules/Results/Results/Results";
 import { Provider } from "react-redux";
 import store from "./Redux/Store1";
 import Unauthorized from "./modules/shared/Unauthorized/Unauthorized";
 import ProtectedRoute from "./modules/shared/Protected-Route/Protected-Route";
 import QuizResult from "./modules/quiz/QuizResult/QuizResult";
+import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
 
 
 const routes = createBrowserRouter([
@@ -66,6 +67,9 @@ const routes = createBrowserRouter([
               { path: "students", element: <Students /> },
               { path: "groups", element: <Groups /> },
               { path: "questions", element: <Questions /> },
+              { path: "view-results/:index", element: <Results /> },
+              { path: "quizzes-data/:id", element: <QuizzesData /> },
+              { path: "quizzes/all-quizzes", element: <QuizPage /> },
             ],
           },
 
@@ -74,7 +78,6 @@ const routes = createBrowserRouter([
             element: <ProtectedRoute allowedRoles={["Student"]} />,
             children: [
               { path: "quiz-interface/:id", element: <QuizInterface /> },
-              { path: "view-results/:index", element: <Results /> },
               { path: "quiz-result", element: <QuizResult /> }
             ],
           },
@@ -85,8 +88,7 @@ const routes = createBrowserRouter([
             children: [
               { index: true, element: <Home /> },
               { path: "quizzes", element: <Quizzes /> },
-              { path: "quizzes-data/:id", element: <QuizzesData /> },
-              { path: "results", element: <CompletedQuizzes /> },
+              { path: "results", element: <CompletedQuizzes2 /> },
             ],
           },
         ],

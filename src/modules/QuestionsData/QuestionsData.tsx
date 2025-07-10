@@ -130,9 +130,10 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
   }, [setValue, questionId, isUpdate]);
 
   return (
-    <Dialog open={openDialog} onOpenChange={(open) => !open && handleDialogClose()}>
+    <Dialog open={openDialog} onOpenChange={(open) => !open && handleDialogClose()}  >
  
       <DialogContent
+       hideClose={true}
         className="w-full max-w-[90vw] md:max-w-[700px] lg:max-w-[800px] p-6 [&>[data-radix-dialog-close]]:text-white"
       >
 
@@ -144,10 +145,10 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
               <div className="flex justify-between items-center">
                 <DialogTitle>{isUpdate ? "Edit Question" : "Set up a new question"}</DialogTitle>
                 <div className="flex items-center gap-5">
-                  <button type="submit" title="Submit" className="text-black text-3xl font-bold">
+                  <button type="submit" title="Submit" className=" cursor-pointer hover:opacity-50 text-3xl font-bold">
                     <FiCheck />
                   </button>
-                  <button type="button" onClick={handleDialogClose} className="text-black text-3xl font-bold">
+                  <button type="button" onClick={handleDialogClose} className=" cursor-pointer hover:opacity-50 text-3xl font-bold">
                     <FiX />
                   </button>
                 </div>
@@ -162,7 +163,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                   render={({ field, fieldState }) => (
                     <FormItem>
                       <div className="relative">
-                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2 bg-[#FFEDDF] text-sm font-bold text-black z-10 rounded-l">
+                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2  text-sm font-bold  z-10 rounded-l">
                           Title
                         </span>
                         <FormControl>
@@ -182,7 +183,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                   render={({ field, fieldState }) => (
                     <FormItem>
                       <div className="relative">
-                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2 bg-[#FFEDDF] text-sm font-bold text-black z-10 rounded-l">
+                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2  text-sm font-bold  z-10 rounded-l">
                           Description
                         </span>
                         <FormControl>
@@ -196,7 +197,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
 
                 {/* Options A-D */}
                 <FormItem className="w-full mt-4">
-                  <FormLabel className="text-sm font-bold text-black bg-[#FFEDDF] px-2 py-1 rounded">Options</FormLabel>
+                  <FormLabel className="text-sm font-bold   px-2 py-1 rounded">Options</FormLabel>
                   <div className="grid grid-cols-2 gap-4 mt-2">
                     {["A", "B", "C", "D"].map((option) => (
                       <FormField
@@ -207,7 +208,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                         render={({ field, fieldState }) => (
                           <FormItem>
                             <div className="relative">
-                              <span className="absolute left-0 top-0 bottom-0 flex items-center px-2 bg-[#FFEDDF] text-sm font-bold text-black z-10 rounded-l">
+                              <span className="absolute left-0 top-0 bottom-0 flex items-center px-2  text-sm font-bold  z-10 rounded-l">
                                 {option}
                               </span>
                               <FormControl>
@@ -230,7 +231,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                   render={({ field, fieldState }) => (
                     <FormItem className="w-full mt-4">
                       <div className="relative">
-                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2 bg-[#FFEDDF] text-sm font-bold text-black z-10 rounded-l">Right Answer</span>
+                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2  text-sm font-bold  z-10 rounded-l">Right Answer</span>
                         <FormControl>
                           <Select value={field.value} onValueChange={field.onChange}>
                             <SelectTrigger className={`w-full pl-[120px] ${fieldState.invalid ? "border-red-500" : ""}`}>
@@ -258,7 +259,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                   render={({ field, fieldState }) => (
                     <FormItem className="w-full mt-4">
                       <div className="relative">
-                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2 bg-[#FFEDDF] text-sm font-bold text-black z-10 rounded-l">Category</span>
+                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2  text-sm font-bold  z-10 rounded-l">Category</span>
                         <FormControl>
                           <Select value={field.value} onValueChange={field.onChange}>
                             <SelectTrigger className={`w-full pl-[100px] ${fieldState.invalid ? "border-red-500" : ""}`}>
@@ -284,7 +285,7 @@ const QuestionsData: React.FC<IQuestionsPropsData> = ({ questionId, onClose, onS
                   render={({ field, fieldState }) => (
                     <FormItem className="w-full mt-4">
                       <div className="relative">
-                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2 bg-[#FFEDDF] text-sm font-bold text-black z-10 rounded-l">Difficulty</span>
+                        <span className="absolute left-0 top-0 bottom-0 flex items-center px-2  text-sm font-bold  z-10 rounded-l">Difficulty</span>
                         <FormControl>
                           <Select value={field.value} onValueChange={field.onChange}>
                             <SelectTrigger className={`w-full pl-[100px] ${fieldState.invalid ? "border-red-500" : ""}`}>

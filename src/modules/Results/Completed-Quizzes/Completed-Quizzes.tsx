@@ -12,11 +12,15 @@ import type { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import type { QuizI } from "@/Interfaces/QuizInterface";
+import type { IAppState, QuizI } from "@/Interfaces/QuizInterface";
 import { useDispatch } from "react-redux";
 import { setCompletedQuizzes } from "../../../Redux/ResultSlice";
+import { useSelector } from "react-redux";
 
-export default function CompletedQuizzes() {
+export default function CompletedQuizzes2() {
+  const loginData = useSelector(
+    (state: IAppState) => state.AuthReduceer.loginData
+  );
   const [completedQuizzes, setCompletedQuizzess] = useState<QuizI[] | null>(
     null
   );
@@ -32,7 +36,7 @@ export default function CompletedQuizzes() {
         QUIZ_URLS.getAllQuizzesResults
       );
       setCompletedQuizzess(data);
-       dispatch(setCompletedQuizzes(data));
+      dispatch(setCompletedQuizzes(data));
     } catch (error) {
       const axiosError = error as AxiosError;
 
@@ -64,7 +68,7 @@ export default function CompletedQuizzes() {
         },
       }));
     } catch (error) {
-      console.log(error);
+      console.log(error); 
     }
   };
 
@@ -76,70 +80,111 @@ export default function CompletedQuizzes() {
     getCompletedQuizzes();
   }, []);
   useEffect(() => {
-    completedQuizzes?.forEach((quiz) => {
-      fetchGroupDetails(quiz?.quiz?.group);
-    });
+    if (loginData.role !== "Student") { 
+      completedQuizzes?.forEach((quiz) => {
+        fetchGroupDetails(quiz?.quiz?.group);
+      });
+    }
   }, [completedQuizzes]);
 
   return (
     <div className="p-4 py-1 pb-4 border rounded-md my-4">
       <h1 className="text-lg font-medium my-3 ">Completed Quizzes</h1>
-      <Table className="border-separate border-spacing-y-2">
-        <TableHeader>
-          <TableRow>
-            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 rounded-s-sm text-white">
-              Title
-            </TableHead>
-            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
-              Group name
-            </TableHead>
-            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
-              No. of persons in group
-            </TableHead>
-            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
-              Participants
-            </TableHead>
-            <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
-              Date
-            </TableHead>
-            <TableHead className="text-right bg-slate-800 border-slate-50  rounded-e-sm text-white w-20"></TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody className="">
-          {completedQuizzes?.map((quiz: QuizI,index:number) => {
-            return (
-              <TableRow key={quiz?.quiz?._id} className=" ">
-                <TableCell className="border mb-1 rounded-s-sm">
-                  {quiz?.quiz?.title}
-                </TableCell>
-                <TableCell className="border mb-1 ">
-                  {groups[quiz?.quiz?.group]?.name || "Loading..."}
-                </TableCell>
+      {loginData.role === "Student" ? (
+        <Table className="border-separate border-spacing-y-2">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="bg-slate-800 border-slate-50 border-r-4 text-white rounded-s-sm">
+                Quiz Title
+              </TableHead>
+              <TableHead className="bg-slate-800 border-slate-50 border-r-4 text-white">Type</TableHead>
+              <TableHead className="bg-slate-800 border-slate-50 border-r-4 text-white">
+                Difficulty
+              </TableHead>
+              <TableHead className="bg-slate-800 border-slate-50 border-r-4 text-white">
+                No. of questions
+              </TableHead>
+              <TableHead className="text-right bg-slate-800 border-slate-50  rounded-e-sm text-white w-20">Score</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {completedQuizzes?.map((item: any) => {
+              const { quiz, result } = item;
 
-                <TableCell className="border mb-1 ">
-                  {groups[quiz?.quiz?.group]?.noOfStudents ?? "-"}
-                </TableCell>
-                <TableCell className="border mb-1 ">
-                  {quiz?.participants?.length}
-                </TableCell>
-                <TableCell className="border mb-1 ">
-                  {quiz?.quiz?.createdAt?.slice(0, 10)}
-                </TableCell>
-                <TableCell className="border mb-1 rounded-e-sm">
-                  <div
-                    className="rounded-3xl bg-lime-600 p-1 text-white text-center cursor-pointer"
-                    onClick={() => {
-                      handelView(index);
-                    }}
-                  >
-                    View
-                  </div>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+              return (
+                <TableRow key={quiz._id}>
+                  <TableCell className="border">{quiz.title}</TableCell>
+                  <TableCell className="border">{quiz.type}</TableCell>
+                  <TableCell className="border capitalize">
+                    {quiz.difficulty}
+                  </TableCell>
+                  <TableCell className="border">
+                    {quiz.questions_number}
+                  </TableCell>
+                  <TableCell className="border">{result.score}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      ) : (
+        <Table className="border-separate border-spacing-y-2">
+          <TableHeader>
+            <TableRow>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 rounded-s-sm text-white">
+                Title
+              </TableHead>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+                Group name
+              </TableHead>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+                No. of persons in group
+              </TableHead>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+                Participants
+              </TableHead>
+              <TableHead className=" bg-slate-800 border-slate-50 border-r-4 text-white">
+                Date
+              </TableHead>
+              <TableHead className="text-right bg-slate-800 border-slate-50  rounded-e-sm text-white w-20"></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody className="">
+            {completedQuizzes?.map((quiz: QuizI, index: number) => {
+              return (
+                <TableRow key={quiz?.quiz?._id} className=" ">
+                  <TableCell className="border mb-1 rounded-s-sm">
+                    {quiz?.quiz?.title}
+                  </TableCell>
+                  <TableCell className="border mb-1 ">
+                    {groups[quiz?.quiz?.group]?.name || "Loading..."}
+                  </TableCell>
+
+                  <TableCell className="border mb-1 ">
+                    {groups[quiz?.quiz?.group]?.noOfStudents ?? "-"}
+                  </TableCell>
+                  <TableCell className="border mb-1 ">
+                    {quiz?.participants?.length}
+                  </TableCell>
+                  <TableCell className="border mb-1 ">
+                    {quiz?.quiz?.createdAt?.slice(0, 10)}
+                  </TableCell>
+                  <TableCell className="border mb-1 rounded-e-sm">
+                    <div
+                      className="rounded-3xl bg-yellow-300 p-1 text-white text-center cursor-pointer"
+                      onClick={() => {
+                        handelView(index);
+                      }}
+                    >
+                      View
+                    </div>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      )}
     </div>
   );
 }

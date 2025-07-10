@@ -1,68 +1,78 @@
-import { useState } from "react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import * as React from "react"
+import { ChevronDownIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { Input } from "@/components/ui/input"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { FaCalendar } from "react-icons/fa";
+} from "@/components/ui/popover"
 
-interface DatePickerDemoProps {
-  className?: string;
-  showPlaceholder?: boolean;
-  value?: Date | null;
-  onChange?: (date: Date | null) => void;
-}
 
-export function DatePickerDemo({
-  className,
-  showPlaceholder = true,
-  value,
-  onChange,
-}: DatePickerDemoProps) {
-  
-  const [internalDate, setInternalDate] = useState<Date | null>(null);
-  const selectedDate = value ?? internalDate;
+type Calendar24Props = {
+  value: Date | undefined;
+  onChange: (val: Date | undefined) => void;
+};
 
-  const handleSelect = (date: Date | undefined) => {
-    const finalDate = date ?? null;
-    if (onChange) {
-      onChange(finalDate);
-    } else {
-      setInternalDate(finalDate); 
-    }
+export function Calendar24({ value, onChange }: Calendar24Props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const [hours, minutes] = e.target.value.split(":").map(Number);
+    if (!value) return;
+    const updated = new Date(value);
+    updated.setHours(hours);
+    updated.setMinutes(minutes);
+    onChange(updated);
   };
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className={cn(
-            "w-[280px] justify-start text-left font-bold text-black",
-            !selectedDate && "text-muted-foreground",
-            className
-          )}
-        >
-          <FaCalendar className="mr-2 h-4 w-4 text-black" />
-          {selectedDate ? (
-            format(selectedDate, "dd/MM/yyyy")
-          ) : showPlaceholder ? (
-            <span className="text-black">Pick a date</span>
-          ) : null}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={selectedDate ?? undefined}
-          onSelect={handleSelect}
+    <div className="flex gap-4">
+      <div className="flex flex-col gap-3">
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className="w-32 justify-between font-normal"
+            >
+              {value ? value.toLocaleDateString() : "Select date"}
+              <ChevronDownIcon />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={value}
+              captionLayout="dropdown"
+              onSelect={(date) => {
+                if (!date) return;
+                const updated = new Date(date);
+                if (value) {
+                  updated.setHours(value.getHours());
+                  updated.setMinutes(value.getMinutes());
+                }
+                onChange(updated);
+                setOpen(false);
+              }}
+            />
+          </PopoverContent>
+        </Popover>
+      </div>
+      <div className="flex flex-col gap-3">
+        <Input
+          type="time"
+          step="60"
+          value={
+            value
+              ? `${String(value.getHours()).padStart(2, "0")}:${String(
+                  value.getMinutes()
+                ).padStart(2, "0")}`
+              : ""
+          }
+          onChange={handleTimeChange}
         />
-      </PopoverContent>
-    </Popover>
+      </div>
+    </div>
   );
 }
-
