@@ -1,8 +1,8 @@
 import { Controller, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { privateUserAxiosInstance } from "@/services/Axiosinstance";
 import { QUIZ_URLS } from "@/services/Urls";
 import { Input } from "@/components/ui/input";
@@ -14,10 +14,20 @@ import { toast } from "react-toastify";
 import type { QuizData, QuizFormInputs } from "@/Interfaces/QuizInterface";
 
 export default function QuizzesData() {
+  let navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [quizDetails, setQuizDetails] = useState<QuizData | null>(null);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const { register, setValue, handleSubmit } = useForm<QuizFormInputs>();
+  const { register, setValue, handleSubmit, control } = useForm<QuizFormInputs>(
+    {
+      defaultValues: {
+        duration: "",
+        numberOfQuestions: "",
+        scorePerQuestion: "",
+        description: "",
+        schadule: new Date(),
+      },
+    }
+  );
+  const [quizDetails, setQuizDetails] = React.useState<QuizData | null>(null);
 
   const getQuiz = async () => {
     try {
@@ -29,7 +39,7 @@ export default function QuizzesData() {
       setValue("numberOfQuestions", quizData.questions.length.toString());
       setValue("scorePerQuestion", quizData.score_per_question.toString());
       setValue("description", quizData.description);
-      setSelectedDate(new Date(quizData.schadule));
+      setValue("schadule", new Date(quizData.schadule));
     } catch (error) {
       console.error("Error fetching quiz:", error);
     }
@@ -41,7 +51,7 @@ export default function QuizzesData() {
         duration: parseInt(data.duration),
         score_per_question: parseFloat(data.scorePerQuestion),
         description: data.description,
-        schadule: selectedDate?.toISOString(),
+        schadule: data.schadule?.toISOString(), //وهنا
       };
 
       const result = await privateUserAxiosInstance.put(
@@ -49,6 +59,7 @@ export default function QuizzesData() {
         payload
       );
       toast.success(result.data.message);
+      navigate("/dashboard/quizzes/all-quizzes");
     } catch (error: any) {
       console.error("Error updating quiz:", error);
       toast.error(error?.response?.data?.message || "Something went wrong.");
@@ -72,7 +83,7 @@ export default function QuizzesData() {
         <p className="mx-2">{quizDetails?.title}</p>
       </div>
 
-      <div className=" xl:w-4/5">
+      <div className="xl:w-4/5">
         <div className="p-4 mt-6 border border-gray-300 rounded bg-white hover:shadow-lg">
           <form onSubmit={handleSubmit(editQuiz)}>
             <div className="title">
@@ -83,18 +94,22 @@ export default function QuizzesData() {
               <div className="flex items-center gap-2">
                 <Controller
                   name="schadule"
-                  defaultValue={null}
+                  control={control}
                   render={({ field }) => (
                     <Calendar24
-                      value={field.value ?? undefined}
-                      onChange={field.onChange}
+                      value={field.value}
+                      onChange={(date) => {
+                        if (date) {
+                          field.onChange(date);
+                        }
+                      }}
                     />
                   )}
                 />
 
-                {selectedDate && (
+                {quizDetails?.schadule && (
                   <span>
-                    {moment(selectedDate).format("DD/MM/YYYY hh:mm A")}
+                    {moment(quizDetails.schadule).format("DD/MM/YYYY hh:mm A")}
                   </span>
                 )}
               </div>
@@ -125,7 +140,7 @@ export default function QuizzesData() {
               <div key={id} className="relative col-span-3 my-3">
                 <label
                   htmlFor={id}
-                  className="absolute w-38 left-0 top-0 text-sm   px-2 py-2 z-10 rounded"
+                  className="absolute w-38 left-0 top-0 text-sm px-2 py-2 z-10 rounded"
                 >
                   {label}
                 </label>
