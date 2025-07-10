@@ -28,16 +28,18 @@ export default function QuizPage() {
   };
 
   const fetchData = async () => {
-    let url = QUIZ_URLS.getAll;
+    let url;
     if (
       location.pathname.includes("all-Quizzes") &&
       loginData.role === "Instructor"
     ) {
+      url = QUIZ_URLS.getAll;
       const data = await getUpcommingQuizzes(url);
       setQuizzes(data);
     } else {
+      url = QUIZ_URLS.getTopUpcommingQuizzes;
       const data = await getUpcommingQuizzes(url);
-      const latestFive = Array.isArray(data) ? data.slice(-5).reverse() : [];
+      const latestFive = Array.isArray(data) ? data.reverse() : [];
       setQuizzes(latestFive);
     }
   };
@@ -80,20 +82,15 @@ export default function QuizPage() {
               </Link>
             </div>
           )}
-
         </div>
       )}
 
-
       {Quizzes && Quizzes.length > 0 ? (
         Quizzes.map((quiz, index) => (
-       <div
-  key={quiz._id || index}
-  className={
-    `flex relative items-center flex-wrap mb-5 border rounded-xl border-gray-300 hover:shadow-md bg-white min-w-60 ` 
-  
-  }
->
+          <div
+            key={quiz._id || index}
+            className={`flex relative items-center flex-wrap mb-5 border rounded-xl border-gray-300 hover:shadow-md bg-white min-w-60 `}
+          >
             <div className="divImg w-1/2 h-30 sm:max-w-1/3 max-w-50 min-w-20">
               <img
                 src={quizImg}
@@ -106,7 +103,10 @@ export default function QuizPage() {
               <h2 className="text-sm font-semibold w-full overflow-hidden">
                 {quiz.title}
               </h2>
-              <p className="text-gray-500 text-xs">Code: {quiz?.code}</p>
+              {loginData.role === "Instructor" ? (
+                <p className="text-gray-500 text-xs">Code: {quiz?.code}</p>
+              ) : null}
+
               <p className="text-gray-500 text-xs">
                 Difficulty: {quiz?.difficulty}
               </p>
@@ -123,7 +123,7 @@ export default function QuizPage() {
                   No. of students: {quiz.participants}
                 </p>
               </div>
-            ):null}
+            ) : null}
 
             <div className="flex sm:absolute xl:relative ms-auto bottom-0 right-0 items-center justify-end px-4 pb-3 sm:pb-0 m-2">
               <Link

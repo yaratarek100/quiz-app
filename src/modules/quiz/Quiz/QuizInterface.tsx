@@ -109,12 +109,12 @@ const handleSubmit = async (e: React.FormEvent) => {
             <h2 className="text-lg font-semibold mb-2">{question.title}</h2>
             <div className="space-y-2">
               {(["A", "B", "C", "D"] as const).map((letter) => (
-                <label key={letter} className="flex items-center gap-2">
+                <label key={letter} className="flex items-center gap-2 bg-white text-slate-700">
                   <input
                     type="radio"
                     name={question._id}
                     value={letter}
-                    className="accent-green-700"
+                    className="accent-yellow-300"
                     onChange={() => handleOptionChange(question._id, letter)}
                     checked={answers[question._id] === letter}
                   />
@@ -128,9 +128,9 @@ const handleSubmit = async (e: React.FormEvent) => {
           <button
             type="submit"
             disabled={!isAllAnswered}
-            className={`px-6 py-2 rounded-full text-white space-x-2 hover:scale-105 transition-transform duration-300 ${
+            className={`px-6 py-2 cursor-pointer rounded-full text-white space-x-2 hover:scale-105 transition-transform duration-300 ${
               isAllAnswered
-                ? "bg-green-700"
+                ? "bg-yellow-300"
                 : "bg-gray-400 cursor-not-allowed"
             }`}
           >

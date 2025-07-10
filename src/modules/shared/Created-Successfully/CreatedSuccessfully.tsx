@@ -40,12 +40,12 @@ export default function CreatedSuccessfully({
               <div className="relative col-span-3">
                 <label
                   htmlFor="code"
-                  className="font-bold absolute left-0 top-0 text-sm  text-white px-3 py-2 h-full z-10 rounded"
+                  className="font-bold absolute left-0 top-0 text-sm  text-white px-3 py-2 h-10 z-10 rounded"
                 >
                   CODE :
                 </label>
 
-                <div className="flex items-center pl-[60px] pr-10 py-2   w-full border border-gray-300 rounded-[10px] bg-white">
+                <div className="flex items-center pl-[60px] pr-10 py-2 h-10  w-full border border-gray-300 rounded-[10px] bg-white">
                   <span className="text-slate-800 text-sm truncate  px-5">{code}</span>
                   <button
                     onClick={handleCopy}

@@ -70,6 +70,7 @@ export interface QuizFormInputs {
   duration: string;
   numberOfQuestions: string;
   scorePerQuestion: string;
+  schadule: Date;
   description: string;
 }
 
