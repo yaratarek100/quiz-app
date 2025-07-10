@@ -28,16 +28,14 @@ export default function QuizPage() {
   };
 
   const fetchData = async () => {
-    let url: string;
+    let url = QUIZ_URLS.getAll;
     if (
       location.pathname.includes("all-Quizzes") &&
       loginData.role === "Instructor"
     ) {
-      url = QUIZ_URLS.getAll;
       const data = await getUpcommingQuizzes(url);
       setQuizzes(data);
     } else {
-      url = QUIZ_URLS.getTopUpcommingQuizzes;
       const data = await getUpcommingQuizzes(url);
       const latestFive = Array.isArray(data) ? data.slice(-5).reverse() : [];
       setQuizzes(latestFive);
