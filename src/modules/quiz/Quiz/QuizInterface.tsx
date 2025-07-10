@@ -126,7 +126,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         ))}
         <div className="col-span-full mt-4 text-center">
           <button
-            type="submit"submit
+            type="submit"
             disabled={!isAllAnswered}
             className={`px-6 py-2 cursor-pointer rounded-full text-white space-x-2 hover:scale-105 transition-transform duration-300 ${
               isAllAnswered
