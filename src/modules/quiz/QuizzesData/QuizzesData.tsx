@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 
 import { useEffect, useState } from "react";
@@ -80,12 +80,16 @@ export default function QuizzesData() {
                 {quizDetails?.title}
               </h3>
 
-              
               <div className="flex items-center gap-2">
-                <Calendar24 
-                  showPlaceholder={false}
-                  value={selectedDate}
-                  onChange={setSelectedDate}
+                <Controller
+                  name="schadule"
+                  defaultValue={null}
+                  render={({ field }) => (
+                    <Calendar24
+                      value={field.value ?? undefined}
+                      onChange={field.onChange}
+                    />
+                  )}
                 />
 
                 {selectedDate && (
