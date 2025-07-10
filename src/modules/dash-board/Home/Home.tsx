@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { privateUserAxiosInstance } from "@/services/Axiosinstance";
-import { QUIZ_URLS, STUDENTS_URLS } from "@/services/Urls";
+import {  STUDENTS_URLS } from "@/services/Urls";
 import { useEffect, useState } from "react";
 import avatar from "../../../assets/images/avatar2.png";
 import { useSelector } from "react-redux";

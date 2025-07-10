@@ -1,5 +1,4 @@
 import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
 import type { ReactNode } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import { , Path } from "react-hook-form";
@@ -33,7 +32,7 @@ export default function CustomInput<T extends FieldValues>({
 }: Props<T>) {
   return <>
   <div className="grid w-full  items-center gap-1.5 mb-6">
-      <p htmlFor="email" className="text-white mb-1 ">{label}    </p>
+      <p  className="text-white mb-1 ">{label}    </p>
       <div className="relative w-full">
   <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white">
 {InputIcon}
