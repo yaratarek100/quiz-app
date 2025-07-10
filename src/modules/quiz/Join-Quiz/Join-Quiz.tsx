@@ -73,7 +73,7 @@ export function JoinQuiz() {
             <div className="relative col-span-3">
               <label
                 htmlFor="code"
-                className="absolute left-0 top-0 text-sm bg-[#FFEDDF] text-black px-2 py-2 z-10 rounded  pointer-events-none"
+                className="absolute left-0 top-0 text-sm  px-2 py-2 z-10 rounded  pointer-events-none"
               >
                 Code
               </label>

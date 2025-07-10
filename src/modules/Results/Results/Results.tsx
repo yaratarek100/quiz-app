@@ -29,10 +29,10 @@ export default function Results() {
   return (
     <>
       <h1 className="text-2xl font-semibold my-3">
-        <Link to="/dashboard/results" className="hover:text-lime-500">
+        <Link to="/dashboard/results" className="hover:text-yellow-300">
           Quizzes
         </Link>
-        <span className="mx-3 text-lime-400">{">>"}</span>
+        <span className="mx-3 text-yellow-300">{">>"}</span>
         {thisQuiz?.quiz?.title}
       </h1>
 

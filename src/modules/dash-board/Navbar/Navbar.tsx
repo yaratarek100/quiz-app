@@ -64,7 +64,7 @@ export default function Navbar() {
             {/* 70% of the width */}
             <div className="flex h-[70px] items-center justify-center p-6">
               <div className="flex  flex-1 justify-between  ps-10">
-                <h3 className="text-lg font-bold mt-2">{getPageTitle()}</h3>
+                <h3 className="text-xl font-bold mt-2 text-yellow-300 ">{getPageTitle()}</h3>
 
                 <div className="flex  flex-1 justify-end items-center px-4">
                   
@@ -76,7 +76,6 @@ export default function Navbar() {
                         </div>
                       ) : (
                         <div onClick={() => dispatch(openJoinQuizModal())}> 
-                        {/* هنا استدعيتها بس مش بتفتح */}
                           <img src={newQuiz} className="inline size-6 me-2" alt="Quiz Icon" />
                           Join Quiz
                         </div>
@@ -103,7 +102,7 @@ export default function Navbar() {
 
                   <DropdownMenuContent>
                     <DropdownMenuLabel
-                      style={{ color: "rgba(197, 216, 109, 1)" }}
+                      className="text-yellow-300"
                     >
                       {userData?.role}
                     </DropdownMenuLabel>

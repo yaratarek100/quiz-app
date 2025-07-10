@@ -47,7 +47,7 @@ export default function Students() {
                 </div>
                 <Button
                   variant="outline"
-                  className="border-none cursor-pointer focus:border-0 hover:opacity-50 absolute -bottom-2 -right-2 bg-transparent "
+                  className="border-none text-yellow-400 shadow-none cursor-pointer focus:border-0 hover:opacity-50 absolute -bottom-2 -right-2 bg-transparent hover:bg-transparent "
                   onClick={() => handleOpen(student)}
                 >
                   <FaCircleArrowRight className="mx-2  " size={20} />

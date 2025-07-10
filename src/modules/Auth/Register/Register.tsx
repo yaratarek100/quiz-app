@@ -80,9 +80,9 @@ export default function Register() {
          />
 
 <div className="relative my-3 text-white">
-          <label htmlFor="role" className=" pl-2 text-white">
+          <p  className=" pl-2 text-white">
             Your role
-          </label>
+          </p>
           <div className="relative">
             <select
               id="role"
@@ -91,12 +91,12 @@ export default function Register() {
               <option hidden>Choose your role</option>
               <option
                 value="Instructor"
-                className="bg-gray-200 text-gray-800 hover:bg-green-300 ">
+                className="bg-gray-200 text-gray-800  ">
                 Instructor
               </option>
               <option
                 value="Student"
-                className="bg-gray-200 text-gray-800 hover:bg-green-300">
+                className="bg-gray-200 text-gray-800 ">
                 Student
               </option>
             </select>
@@ -117,8 +117,8 @@ export default function Register() {
    password={password}
          />
           <div className="bottom flex justify-between items-center">
-    <Button  type="submit" className="bg-white text-black hover:bg-white">{isSubmitting?<>
-      <div className="w-4 h-4 border-4 border-black border-t-transparent rounded-full animate-spin "></div>
+    <Button  type="submit" className="bg-yellow-400 font-semibold ms-auto mt-3  text-white w-37 h-13 rounded-3xl gap-3 flex  text-xl shadow-2xl hover:bg-slate-300 cursor-pointer">{isSubmitting?<>
+      <div className="w-5 h-5  border-4 border-black border-t-transparent rounded-full animate-spin "></div>
       <span>Loading</span>
     </>
 :<><FaCheckCircle/> Sign Up </>}</Button>

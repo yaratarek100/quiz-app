@@ -33,7 +33,7 @@ export default function CustomInput<T extends FieldValues>({
 }: Props<T>) {
   return <>
   <div className="grid w-full  items-center gap-1.5 mb-6">
-      <Label htmlFor="email" className="text-white mb-1 ">{label}    </Label>
+      <p htmlFor="email" className="text-white mb-1 ">{label}    </p>
       <div className="relative w-full">
   <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white">
 {InputIcon}

@@ -24,6 +24,7 @@ import store from "./Redux/Store1";
 import Unauthorized from "./modules/shared/Unauthorized/Unauthorized";
 import ProtectedRoute from "./modules/shared/Protected-Route/Protected-Route";
 import QuizResult from "./modules/quiz/QuizResult/QuizResult";
+import QuizPage from "./modules/quiz/Quiz-Page/Quiz-Page";
 
 
 const routes = createBrowserRouter([
@@ -68,6 +69,7 @@ const routes = createBrowserRouter([
               { path: "questions", element: <Questions /> },
               { path: "view-results/:index", element: <Results /> },
               { path: "quizzes-data/:id", element: <QuizzesData /> },
+              { path: "quizzes/all-quizzes", element: <QuizPage /> },
             ],
           },
 

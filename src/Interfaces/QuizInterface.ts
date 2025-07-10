@@ -6,6 +6,7 @@ export interface CreatedSuccessfullyProps {
 }
 
 export interface IQuiz {
+  participants: any[];
   code: string;
   title: string;
   description: string;
@@ -32,6 +33,7 @@ export interface QuizFormValues {
   score_per_question: string;
   description: string;
   difficulty: string;
+  schadule :Date;
   type: string;
   group: string;
 }

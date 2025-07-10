@@ -96,10 +96,10 @@ export default function Questions() {
         <h1 className="text-lg font-medium my-3 ">Bank Of Questions</h1>
 
         <div
-          className="border border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 cursor-pointer hover:bg-gray-200"
+          className="border border-gray-500 p-2 my-3 mt-4 rounded-full px-4 flex items-center space-x-2 cursor-pointer hover:bg-gray-200"
           onClick={handleAddClick}
         >
-          <GrAdd className="text-2xl" />
+          <GrAdd className="text-2xl p-1 font-bold rounded-full text-white bg-slate-950" />
           <span>Add Question</span>
         </div>
         {openEdit && (
@@ -149,14 +149,14 @@ export default function Questions() {
                 {question.status}
               </TableCell>
               <TableCell className="border mb-1 rounded-e-sm">
-                <div className="flex text-orange-300 text-lg gap-1 ">
-                  <FaEye className="cursor-pointer" />
+                <div className="flex  text-lg gap-1 ">
+                  <FaEye className="cursor-pointer text-green-400 hover:opacity-70" />
                   <CiEdit
-                    className="cursor-pointer"
+                    className="cursor-pointer text-yellow-400 hover:opacity-70"
                     onClick={() => handleEditClick(question)}
                   />
                   <MdDelete
-                    className="cursor-pointer"
+                    className="cursor-pointer text-red-400 hover:opacity-70"
                     onClick={() => handleDeleteClick(question._id)}
                   />
                 </div>

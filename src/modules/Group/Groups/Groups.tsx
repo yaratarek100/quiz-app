@@ -89,19 +89,19 @@ export default function Groups() {
 if (isLoading) return <LoadingScreen/> 
   return (
     <div className="w-full max-w-6xl m-auto px-6 pt-2 pb-4 border border-gray-400 rounded-lg">
-      <div className="flex  items-center justify-between flex-wrap pb-5">
+      <div className="flex  items-center justify-between pb-5">
         <h1 className="text-xl ">Groups list</h1>
 
         <div className="flex items-center">
 
           <div
             onClick={() => { setGroupToEdit(null); setOpenAddDialog(true); }}
-            className="border mt-2 border-gray-500 p-2 rounded-full px-4 flex items-center space-x-2 
+            className=" sm:border mt-2 border-gray-500 p-2 rounded-full px-4 flex items-center sm:gap-3
     hover:bg-gray-100 hover:scale-105 transition-transform duration-300 cursor-pointer"
           >
-            <FaPlus className="text-xl text-white bg-black rounded-full p-0.5" />
+            <FaPlus className="text-4xl sm:text-xl   text-white bg-black rounded-full p-2 sm:p-0.5 " />
 
-            <h3 className="text-lg font-semibold whitespace-nowrap" >Add Group</h3>
+            <h3 className="text-lg font-semibold whitespace-nowrap hidden sm:inline" >Add Group</h3>
           </div>
 
 
@@ -113,22 +113,22 @@ if (isLoading) return <LoadingScreen/>
           {groupsData.map((group) => (
             <div
               key={group._id}
-              className="p-4 border border-gray-300 rounded transition-all duration-300 hover:shadow-lg hover:scale-102 hover:bg-gray-50 flex justify-between"
+              className="p-4 border border-gray-300 rounded transition-all duration-300 hover:shadow-lg hover:scale-102 hover:bg-gray-50 flex flex-col sm:flex-row justify-between gap-7"
             >
               <div>
-                <h2 className="text-xl font-bold mb-2">Group: {group.name}</h2>
-                <p>Students: {group.students.length}</p>
+                <h2 className="text-xl font-bold mb-2">Group : {group.name}</h2>
+                <p>No. of students : {group.students.length}</p>
               </div>
 
-              <div className="flex space-x-4 text-sm items-center">
+              <div className="flex sm:flex-col  justify-end sm:justify-center gap-2  space-x-4 text-sm items-center ">
                 <div
-                  className="flex items-center space-x-1 text-red-600 cursor-pointer hover:scale-105"
+                  className="flex  items-center space-x-1 text-red-600 cursor-pointer hover:scale-105 "
                   onClick={() => handleDeleteClick(group._id)}
                 >
                   <FaRegTrashCan />
                   <span>Delete</span>
                 </div>
-                <div onClick={() => handleEditClick(group)} className="flex items-center space-x-1 text-blue-600 cursor-pointer hover:scale-105">
+                <div onClick={() => handleEditClick(group)} className="flex items-center space-x-1 text-yellow-400 cursor-pointer hover:scale-105">
                   <FaRegEdit />
                   <span>Edit</span>
                 </div>

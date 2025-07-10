@@ -28,16 +28,13 @@ export default function Login() {
 
   const {handleSubmit,formState:{errors,isSubmitting},register}=useForm<ILogin_Login>()
   const onSubmit = async (values:ILogin_Login) =>{
-    console.log(values)
     try {
       const {data}=await publicUserAxiosInstance.post(AUTH_URLS.login,values)
       toast.success(data?.message)
       localStorage.setItem('token',data?.data?.accessToken)
       
-      console.log(localStorage.getItem('token'));
       dispatch(fillLoginData(data?.data?.profile))
       localStorage.setItem("user", JSON.stringify(data?.data?.profile));
-      console.log(localStorage.getItem('user'));
       navigate('/dashboard')
     } catch (error) {
       console.log(error)
@@ -72,14 +69,16 @@ register={register}
    togglePass={togglePass}
    password={password}
    />
-    <div className="bottom flex justify-between items-center">
-    <Button className="bg-white text-black hover:bg-white cursor-pointer">{isSubmitting?<>
-      <div className="w-4 h-4 border-4 border-black border-t-transparent rounded-full animate-spin "></div>
+      <p className="text-white">Forgot password? <Link to={'/forget-password'} className=" underline text-yellow-300">click here</Link></p> 
+    <div className="bottom text-white">
+    <button  className="bg-yellow-400 font-semibold ms-auto mt-3  text-white w-37 h-13 rounded-3xl gap-3 flex justify-center items-center  text-xl shadow-2xl hover:bg-slate-300 cursor-pointer">
+      
+      {isSubmitting?<>
+      <div className="w-5 h-5  border-4  border-black border-t-transparent rounded-full animate-spin "></div>
       <span>Loading</span>
     </>
-: <><FaCheckCircle/>  Sign In </>}</Button>
+: <><FaCheckCircle/>  Sign In </>}</button>
       
-      <p className="text-white">Forgot password? <Link to={'/forget-password'} className=" underline">click here</Link></p> 
 
     </div>
   </form>
